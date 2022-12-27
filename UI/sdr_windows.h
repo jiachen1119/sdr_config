@@ -7,7 +7,8 @@
 
 #include <QMainWindow>
 #include <qdebug.h>
-
+#include <qfile.h>
+#include <qfiledialog.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class sdr_windows; }

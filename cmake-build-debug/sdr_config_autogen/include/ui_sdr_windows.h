@@ -22,6 +22,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -45,6 +46,11 @@ public:
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_2;
     QLineEdit *lineEdit;
+    QWidget *widget_3;
+    QHBoxLayout *horizontalLayout_5;
+    QLabel *label_3;
+    QLineEdit *lineEdit_2;
+    QToolButton *toolButton_2;
     QPushButton *pushButton;
     QWidget *widget1;
     QHBoxLayout *horizontalLayout_2;
@@ -72,7 +78,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         groupBox = new QGroupBox(centralwidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(30, 20, 306, 136));
+        groupBox->setGeometry(QRect(30, 20, 306, 221));
         verticalLayout = new QVBoxLayout(groupBox);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         widget_2 = new QWidget(groupBox);
@@ -111,11 +117,34 @@ public:
 
         lineEdit = new QLineEdit(widget);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        lineEdit->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         horizontalLayout_4->addWidget(lineEdit);
 
 
         verticalLayout->addWidget(widget);
+
+        widget_3 = new QWidget(groupBox);
+        widget_3->setObjectName(QString::fromUtf8("widget_3"));
+        horizontalLayout_5 = new QHBoxLayout(widget_3);
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        label_3 = new QLabel(widget_3);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+
+        horizontalLayout_5->addWidget(label_3);
+
+        lineEdit_2 = new QLineEdit(widget_3);
+        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
+
+        horizontalLayout_5->addWidget(lineEdit_2);
+
+        toolButton_2 = new QToolButton(widget_3);
+        toolButton_2->setObjectName(QString::fromUtf8("toolButton_2"));
+
+        horizontalLayout_5->addWidget(toolButton_2);
+
+
+        verticalLayout->addWidget(widget_3);
 
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
@@ -180,6 +209,10 @@ public:
 
         comboBox->setCurrentText(QCoreApplication::translate("sdr_windows", "ibyte", nullptr));
         label_2->setText(QCoreApplication::translate("sdr_windows", "Sample Rate (Hz)", nullptr));
+        lineEdit->setText(QCoreApplication::translate("sdr_windows", "4e6", nullptr));
+        label_3->setText(QCoreApplication::translate("sdr_windows", "File Path ", nullptr));
+        lineEdit_2->setText(QCoreApplication::translate("sdr_windows", "../1.conf", nullptr));
+        toolButton_2->setText(QCoreApplication::translate("sdr_windows", "...", nullptr));
         pushButton->setText(QCoreApplication::translate("sdr_windows", "OK", nullptr));
         menu->setTitle(QCoreApplication::translate("sdr_windows", "File", nullptr));
         menu_2->setTitle(QCoreApplication::translate("sdr_windows", "Help", nullptr));
