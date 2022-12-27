@@ -36,8 +36,14 @@ sdr_windows::sdr_windows(QWidget *parent) :
         char *data=new char [100];
         qint64 readNum=file.readLine(data,100);
         while ((readNum !=0) && (readNum != -1)){
-            qDebug()<<data;
-            if(data.contains("LOC", Qt::CaseSensitive))
+            QString dataQString(data);
+            dataQString=dataQString.trimmed();
+            dataQString=dataQString.split(";").at(0);
+            if(dataQString.contains("sampling_frequency", Qt::CaseSensitive)){
+                QStringList dataList=dataQString.split("=");
+                qDebug()<<dataList.at(0);
+                qDebug()<<dataList.at(1);
+            }
             readNum=file.readLine(data,100);
         }
     });
