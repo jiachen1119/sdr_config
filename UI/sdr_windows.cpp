@@ -53,6 +53,7 @@ sdr_windows::sdr_windows(QWidget *parent) :
             }
             readNum=file.readLine(data,100);
         }
+        file.close();
     });
 
 }
