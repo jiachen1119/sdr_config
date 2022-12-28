@@ -11,9 +11,9 @@
 sdr_windows::sdr_windows(QWidget *parent) :
         QMainWindow(parent), ui(new Ui::sdr_windows) {
     ui->setupUi(this);
+    //1. lineEdit file path init
     QString filePath=ui->lineEdit_2->text();
-
-    //file read setting
+    //2. file read setting
     QSettings setting("./Setting.ini", QSettings::IniFormat); // to remember the path
     QString lastPath = setting.value("LastFilePath").toString();
     //...tool button connect
@@ -26,8 +26,8 @@ sdr_windows::sdr_windows(QWidget *parent) :
     connect(ui->pushButton,&QPushButton::clicked, this,[=](){
         QString dataType=ui->comboBox->currentText();
         qDebug()<<dataType;
-        QString samplingRate=ui->lineEdit->text();
-        qDebug()<<samplingRate;
+        QString samplingFreq=ui->lineEdit->text();
+        qDebug()<<samplingFreq;
         //read the configuration file
         QFile file(filePath);
         if(!file.open(QIODevice::ReadOnly|QIODevice::ExistingOnly|QIODevice::Text)){
@@ -43,6 +43,13 @@ sdr_windows::sdr_windows(QWidget *parent) :
                 QStringList dataList=dataQString.split("=");
                 qDebug()<<dataList.at(0);
                 qDebug()<<dataList.at(1);
+                ui->lineEdit->setText(dataList.at(1));
+            }
+            if(dataQString.contains("item_type", Qt::CaseInsensitive)){
+                QStringList dataList=dataQString.split("=");
+                qDebug()<<dataList.at(0);
+                qDebug()<<dataList.at(1);
+                ui->comboBox->setCurrentText(dataList.at(1));
             }
             readNum=file.readLine(data,100);
         }

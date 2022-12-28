@@ -51,11 +51,15 @@ public:
     QLabel *label_3;
     QLineEdit *lineEdit_2;
     QToolButton *toolButton_2;
-    QPushButton *pushButton;
-    QWidget *widget1;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_2;
-    QWidget *widget2;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_3;
+    QWidget *widget_4;
+    QHBoxLayout *horizontalLayout_6;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
     QMenuBar *menubar;
     QMenu *menu;
     QMenu *menu_2;
@@ -78,7 +82,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         groupBox = new QGroupBox(centralwidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(30, 20, 306, 221));
+        groupBox->setGeometry(QRect(30, 20, 351, 221));
         verticalLayout = new QVBoxLayout(groupBox);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         widget_2 = new QWidget(groupBox);
@@ -146,21 +150,38 @@ public:
 
         verticalLayout->addWidget(widget_3);
 
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(360, 290, 89, 25));
-        widget1 = new QWidget(centralwidget);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        widget1->setGeometry(QRect(0, 0, 2, 2));
-        horizontalLayout_2 = new QHBoxLayout(widget1);
+        layoutWidget = new QWidget(centralwidget);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(0, 0, 2, 2));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        widget2 = new QWidget(centralwidget);
-        widget2->setObjectName(QString::fromUtf8("widget2"));
-        widget2->setGeometry(QRect(0, 0, 2, 2));
-        horizontalLayout_3 = new QHBoxLayout(widget2);
+        layoutWidget1 = new QWidget(centralwidget);
+        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(0, 0, 2, 2));
+        horizontalLayout_3 = new QHBoxLayout(layoutWidget1);
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        widget_4 = new QWidget(centralwidget);
+        widget_4->setObjectName(QString::fromUtf8("widget_4"));
+        widget_4->setGeometry(QRect(250, 280, 270, 43));
+        horizontalLayout_6 = new QHBoxLayout(widget_4);
+        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
+        pushButton = new QPushButton(widget_4);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+
+        horizontalLayout_6->addWidget(pushButton);
+
+        pushButton_2 = new QPushButton(widget_4);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+
+        horizontalLayout_6->addWidget(pushButton_2);
+
+        pushButton_3 = new QPushButton(widget_4);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+
+        horizontalLayout_6->addWidget(pushButton_3);
+
         sdr_windows->setCentralWidget(centralwidget);
         menubar = new QMenuBar(sdr_windows);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -213,7 +234,9 @@ public:
         label_3->setText(QCoreApplication::translate("sdr_windows", "File Path ", nullptr));
         lineEdit_2->setText(QCoreApplication::translate("sdr_windows", "../1.conf", nullptr));
         toolButton_2->setText(QCoreApplication::translate("sdr_windows", "...", nullptr));
-        pushButton->setText(QCoreApplication::translate("sdr_windows", "OK", nullptr));
+        pushButton->setText(QCoreApplication::translate("sdr_windows", "Read", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("sdr_windows", "Write", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("sdr_windows", "Default", nullptr));
         menu->setTitle(QCoreApplication::translate("sdr_windows", "File", nullptr));
         menu_2->setTitle(QCoreApplication::translate("sdr_windows", "Help", nullptr));
     } // retranslateUi
