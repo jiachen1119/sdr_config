@@ -19,6 +19,7 @@ sdr_windows::sdr_windows(QWidget *parent) :
     QSettings setting("./Setting.ini", QSettings::IniFormat); // to remember the path
     QString lastPath = setting.value("LastFilePath").toString();
 
+    ui->lineEdit->textEdited();
     //...tool button connect
     connect(ui->toolButton_2,&QToolButton::clicked, this,[=]() mutable {
         filePath=QFileDialog::getOpenFileName(this,"Open configuration file",
@@ -33,7 +34,6 @@ sdr_windows::sdr_windows(QWidget *parent) :
         QFile file(filePath);
         if(!file.open(QIODevice::ReadOnly|QIODevice::ExistingOnly|QIODevice::Text)){
             QMessageBox::critical(this,"File Read Error","The file path is error, please retry!");
-            ui->lineEdit_2->redo();
             qDebug()<<"Opening the configuration file failed!";
         }
         else{
