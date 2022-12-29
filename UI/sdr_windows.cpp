@@ -19,7 +19,6 @@ sdr_windows::sdr_windows(QWidget *parent) :
     QSettings setting("./Setting.ini", QSettings::IniFormat); // to remember the path
     QString lastPath = setting.value("LastFilePath").toString();
 
-    ui->lineEdit->textEdited();
     //...tool button connect
     connect(ui->toolButton_2,&QToolButton::clicked, this,[=]() mutable {
         filePath=QFileDialog::getOpenFileName(this,"Open configuration file",
@@ -29,16 +28,16 @@ sdr_windows::sdr_windows(QWidget *parent) :
 
     //set the Read button
     connect(ui->pushButton,&QPushButton::clicked, this,[&](){
-        //read the configuration file
+        //read the configuration readFile
         filePath=ui->lineEdit_2->text();
-        QFile file(filePath);
-        if(!file.open(QIODevice::ReadOnly|QIODevice::ExistingOnly|QIODevice::Text)){
-            QMessageBox::critical(this,"File Read Error","The file path is error, please retry!");
-            qDebug()<<"Opening the configuration file failed!";
+        QFile readFile(filePath);
+        if(!readFile.open(QIODevice::ReadOnly | QIODevice::ExistingOnly | QIODevice::Text)){
+            QMessageBox::critical(this,"File Read Error","The readFile path is error, please retry!");
+            qDebug()<<"Opening the configuration readFile failed!";
         }
         else{
             char *data=new char [100];
-            qint64 readNum=file.readLine(data,100);
+            qint64 readNum=readFile.readLine(data, 100);
             while ((readNum !=0) && (readNum != -1)){
                 QString dataQString(data);
                 dataQString=dataQString.trimmed();
@@ -55,9 +54,9 @@ sdr_windows::sdr_windows(QWidget *parent) :
                     qDebug()<<dataList.at(1);
                     ui->comboBox->setCurrentText(dataList.at(1));
                 }
-                readNum=file.readLine(data,100);
+                readNum=readFile.readLine(data, 100);
             }
-            file.close();
+            readFile.close();
         }
     });
 
@@ -65,6 +64,11 @@ sdr_windows::sdr_windows(QWidget *parent) :
     connect(ui->pushButton_2,&QPushButton::clicked, this,[&](){
         QString dataType=ui->comboBox->currentText();
         QString samplingFreq=ui->lineEdit->text();
+        QFile writeFile("../sdr_config.conf");
+        if(!writeFile.open(QIODevice::WriteOnly|QIODevice::Text))
+            qDebug()<<"sdr_config.conf don't exist";
+        writeFile.write(samplingFreq.toStdString().c_str());
+        writeFile.close();
     });
 
     //set the Default button

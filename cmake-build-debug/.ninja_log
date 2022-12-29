@@ -73,3 +73,15 @@
 2	9	1672197852939123430	/home/tang/CLionProjects/sdr_config/cmake-build-debug/sdr_config_autogen/mocs_compilation.cpp	2527bc296da89908
 10	1085	1672197854015149139	CMakeFiles/sdr_config.dir/UI/sdr_windows.cpp.o	7939004cbdc32a12
 1085	1391	1672197854319156406	sdr_config	24137d5e7f2bad24
+2	11	1672312230453795515	sdr_config_autogen/timestamp	2527bc296da89908
+2	11	1672312230453795515	sdr_config_autogen/mocs_compilation.cpp	2527bc296da89908
+2	11	1672312230453795515	/home/tang/CLionProjects/sdr_config/cmake-build-debug/sdr_config_autogen/timestamp	2527bc296da89908
+2	11	1672312230453795515	/home/tang/CLionProjects/sdr_config/cmake-build-debug/sdr_config_autogen/mocs_compilation.cpp	2527bc296da89908
+12	1255	1672312231693874190	CMakeFiles/sdr_config.dir/UI/sdr_windows.cpp.o	7939004cbdc32a12
+1255	1604	1672312232041896227	sdr_config	24137d5e7f2bad24
+1	8	1672322544600390124	sdr_config_autogen/timestamp	2527bc296da89908
+1	8	1672322544600390124	sdr_config_autogen/mocs_compilation.cpp	2527bc296da89908
+1	8	1672322544600390124	/home/tang/CLionProjects/sdr_config/cmake-build-debug/sdr_config_autogen/timestamp	2527bc296da89908
+1	8	1672322544600390124	/home/tang/CLionProjects/sdr_config/cmake-build-debug/sdr_config_autogen/mocs_compilation.cpp	2527bc296da89908
+9	1188	1672322545780389922	CMakeFiles/sdr_config.dir/UI/sdr_windows.cpp.o	7939004cbdc32a12
+1188	1495	1672322546084389871	sdr_config	24137d5e7f2bad24
