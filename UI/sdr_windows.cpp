@@ -98,6 +98,7 @@ sdr_windows::sdr_windows(QWidget *parent) :
             }
             writeFile.close();
         }
+        system("gnss-sdr --config_file=../sdr_config.conf");
     });
 
     //set the Default button
