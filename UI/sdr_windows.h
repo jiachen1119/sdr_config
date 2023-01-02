@@ -21,6 +21,7 @@ Q_OBJECT
 public:
     explicit sdr_windows(QWidget *parent = nullptr);
     void init();
+    QStringList readConfigInLine(QString file_path);
     ~sdr_windows() override;
 
 public slots:
@@ -31,7 +32,7 @@ private:
     QString config_filepath_;
     QString config_file_lastpath_;
     QString data_type_;
-    int sampling_freq_;
+    QString sampling_freq_;
 
 };
 

@@ -60,38 +60,26 @@ sdr_windows::sdr_windows(QWidget *parent) :
     //set the Write button
     connect(ui->pushButton_2,&QPushButton::clicked, this,[&](){
         data_type_=ui->comboBox->currentText();
-        sampling_freq_=ui->lineEdit->text().toInt();
-        QFile openFile("../file.conf");
-        QStringList readQStringList;
-        if(!openFile.open(QIODevice::ReadOnly|QIODevice::Text|QIODevice::ExistingOnly))
-            qDebug()<<"cannot find the model configuration file";
-        else{
-            char* readLineData=new char[100];
-            qint64 readNum=openFile.readLine(readLineData,100);
-            while ((readNum !=0) && (readNum != -1)){
-                QString dataQString(readLineData);
-                QString confKeyWord=dataQString.split("=").at(0);
-                if(confKeyWord.contains("sampling_frequency", Qt::CaseInsensitive)){
-                    QStringList dataList=dataQString.split("=");
-                    QString str=QString("%1=%2\n").arg(confKeyWord).arg(sampling_freq_);
-                    dataQString=str;
-                }
-                if(dataQString.contains("item_type", Qt::CaseInsensitive)){
-                    QStringList dataList=dataQString.split("=");
-                    QString str=QString("%1=%2\n").arg(confKeyWord).arg(data_type_);
-                    dataQString=str;
-                }
-                readQStringList<<dataQString;
-                readNum=openFile.readLine(readLineData, 100);
+        sampling_freq_=ui->lineEdit->text();
+        QStringList readList=readConfigInLine("../file.conf");
+        for (int list_index = 0; list_index < readList.size(); ++list_index) {
+            QStringList keyword_list=readList.at(list_index).split("=");
+            if (keyword_list.at(0).contains("sampling_frequency",Qt::CaseInsensitive)){
+                QString str=QString("%1=%2\n").arg(keyword_list.at(0)).arg(sampling_freq_);
+                readList.replace(list_index,str);
             }
-            openFile.close();
+            if (keyword_list.at(0).contains("item_type",Qt::CaseInsensitive)){
+                QString str=QString("%1=%2\n").arg(keyword_list.at(0)).arg(data_type_);
+                readList.replace(list_index,str);
+            }
         }
+
         QFile writeFile("../sdr_config.conf");
         if(!writeFile.open(QIODevice::WriteOnly|QIODevice::Text))
             qDebug()<<"sdr_config.conf don't exist";
         else{
-            for (int index = 0; index < readQStringList.size(); ++index) {
-                writeFile.write(readQStringList.at(index).toStdString().c_str());
+            for (int index = 0; index < readList.size(); ++index) {
+                writeFile.write(readList.at(index).toStdString().c_str());
             }
             writeFile.close();
         }
@@ -144,4 +132,22 @@ void sdr_windows::btnToggled(int btn, bool checked) {
         default:
             break;
     }
+}
+
+QStringList sdr_windows::readConfigInLine(QString file_path) {
+    QFile file(file_path);
+    QStringList read_QString_list;
+    if(!file.open(QIODevice::ReadOnly|QIODevice::Text|QIODevice::ExistingOnly))
+        qDebug()<<"cannot find the model configuration file";
+    else{
+        char* read_data=new char[100];
+        qint64 readNum=file.readLine(read_data,100);
+        while ((readNum !=0) && (readNum != -1)){
+            QString read_data_QString(read_data);
+            read_QString_list<<read_data_QString;
+            readNum=file.readLine(read_data, 100);
+        }
+        file.close();
+    }
+    return read_QString_list;
 }
