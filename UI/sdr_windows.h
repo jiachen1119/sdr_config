@@ -19,11 +19,15 @@ Q_OBJECT
 
 public:
     explicit sdr_windows(QWidget *parent = nullptr);
-
+    void init();
     ~sdr_windows() override;
 
 private:
     Ui::sdr_windows *ui;
+    QString config_filepath_;
+    QString data_type_;
+    int sampling_freq_;
+
 };
 
 

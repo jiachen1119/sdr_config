@@ -21,6 +21,8 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
+#include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
@@ -60,6 +62,16 @@ public:
     QPushButton *pushButton;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
+    QGroupBox *groupBox_2;
+    QWidget *widget_5;
+    QHBoxLayout *horizontalLayout_7;
+    QRadioButton *radioButtonFile;
+    QRadioButton *radioButtonHackrf;
+    QRadioButton *radioButtonUSRP;
+    QGroupBox *groupBox_3;
+    QStackedWidget *stackedWidget;
+    QWidget *page;
+    QWidget *page_2;
     QMenuBar *menubar;
     QMenu *menu;
     QMenu *menu_2;
@@ -69,7 +81,7 @@ public:
     {
         if (sdr_windows->objectName().isEmpty())
             sdr_windows->setObjectName(QString::fromUtf8("sdr_windows"));
-        sdr_windows->resize(563, 416);
+        sdr_windows->resize(811, 648);
         actionOpen = new QAction(sdr_windows);
         actionOpen->setObjectName(QString::fromUtf8("actionOpen"));
         actionNew = new QAction(sdr_windows);
@@ -82,7 +94,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         groupBox = new QGroupBox(centralwidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(30, 20, 351, 221));
+        groupBox->setGeometry(QRect(30, 130, 311, 221));
         verticalLayout = new QVBoxLayout(groupBox);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         widget_2 = new QWidget(groupBox);
@@ -164,7 +176,7 @@ public:
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
         widget_4 = new QWidget(centralwidget);
         widget_4->setObjectName(QString::fromUtf8("widget_4"));
-        widget_4->setGeometry(QRect(250, 280, 270, 43));
+        widget_4->setGeometry(QRect(500, 540, 270, 43));
         horizontalLayout_6 = new QHBoxLayout(widget_4);
         horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
         pushButton = new QPushButton(widget_4);
@@ -182,10 +194,45 @@ public:
 
         horizontalLayout_6->addWidget(pushButton_3);
 
+        groupBox_2 = new QGroupBox(centralwidget);
+        groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
+        groupBox_2->setGeometry(QRect(30, 20, 311, 80));
+        widget_5 = new QWidget(groupBox_2);
+        widget_5->setObjectName(QString::fromUtf8("widget_5"));
+        widget_5->setGeometry(QRect(20, 30, 311, 41));
+        horizontalLayout_7 = new QHBoxLayout(widget_5);
+        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
+        radioButtonFile = new QRadioButton(widget_5);
+        radioButtonFile->setObjectName(QString::fromUtf8("radioButtonFile"));
+
+        horizontalLayout_7->addWidget(radioButtonFile);
+
+        radioButtonHackrf = new QRadioButton(widget_5);
+        radioButtonHackrf->setObjectName(QString::fromUtf8("radioButtonHackrf"));
+
+        horizontalLayout_7->addWidget(radioButtonHackrf);
+
+        radioButtonUSRP = new QRadioButton(widget_5);
+        radioButtonUSRP->setObjectName(QString::fromUtf8("radioButtonUSRP"));
+
+        horizontalLayout_7->addWidget(radioButtonUSRP);
+
+        groupBox_3 = new QGroupBox(centralwidget);
+        groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
+        groupBox_3->setGeometry(QRect(370, 130, 391, 321));
+        stackedWidget = new QStackedWidget(groupBox_3);
+        stackedWidget->setObjectName(QString::fromUtf8("stackedWidget"));
+        stackedWidget->setGeometry(QRect(10, 30, 371, 281));
+        page = new QWidget();
+        page->setObjectName(QString::fromUtf8("page"));
+        stackedWidget->addWidget(page);
+        page_2 = new QWidget();
+        page_2->setObjectName(QString::fromUtf8("page_2"));
+        stackedWidget->addWidget(page_2);
         sdr_windows->setCentralWidget(centralwidget);
         menubar = new QMenuBar(sdr_windows);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 563, 28));
+        menubar->setGeometry(QRect(0, 0, 811, 28));
         menu = new QMenu(menubar);
         menu->setObjectName(QString::fromUtf8("menu"));
         menu_2 = new QMenu(menubar);
@@ -205,6 +252,7 @@ public:
         retranslateUi(sdr_windows);
 
         comboBox->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(sdr_windows);
@@ -217,7 +265,7 @@ public:
         actionNew->setText(QCoreApplication::translate("sdr_windows", "New", nullptr));
         actionExit->setText(QCoreApplication::translate("sdr_windows", "Exit", nullptr));
         actionAbout->setText(QCoreApplication::translate("sdr_windows", "About", nullptr));
-        groupBox->setTitle(QCoreApplication::translate("sdr_windows", "Basic Settings", nullptr));
+        groupBox->setTitle(QCoreApplication::translate("sdr_windows", "Settings", nullptr));
         label->setText(QCoreApplication::translate("sdr_windows", "Data Type", nullptr));
         comboBox->setItemText(0, QCoreApplication::translate("sdr_windows", "byte", nullptr));
         comboBox->setItemText(1, QCoreApplication::translate("sdr_windows", "short", nullptr));
@@ -231,12 +279,17 @@ public:
         comboBox->setCurrentText(QCoreApplication::translate("sdr_windows", "ibyte", nullptr));
         label_2->setText(QCoreApplication::translate("sdr_windows", "Sample Rate (Hz)", nullptr));
         lineEdit->setText(QCoreApplication::translate("sdr_windows", "4e6", nullptr));
-        label_3->setText(QCoreApplication::translate("sdr_windows", "File Path ", nullptr));
+        label_3->setText(QCoreApplication::translate("sdr_windows", "Read Config Path ", nullptr));
         lineEdit_2->setText(QCoreApplication::translate("sdr_windows", "../1.conf", nullptr));
         toolButton_2->setText(QCoreApplication::translate("sdr_windows", "...", nullptr));
         pushButton->setText(QCoreApplication::translate("sdr_windows", "Read", nullptr));
         pushButton_2->setText(QCoreApplication::translate("sdr_windows", "Write", nullptr));
         pushButton_3->setText(QCoreApplication::translate("sdr_windows", "Default", nullptr));
+        groupBox_2->setTitle(QCoreApplication::translate("sdr_windows", "GroupBox", nullptr));
+        radioButtonFile->setText(QCoreApplication::translate("sdr_windows", "File", nullptr));
+        radioButtonHackrf->setText(QCoreApplication::translate("sdr_windows", "HackRF", nullptr));
+        radioButtonUSRP->setText(QCoreApplication::translate("sdr_windows", "USRP", nullptr));
+        groupBox_3->setTitle(QCoreApplication::translate("sdr_windows", "GroupBox", nullptr));
         menu->setTitle(QCoreApplication::translate("sdr_windows", "File", nullptr));
         menu_2->setTitle(QCoreApplication::translate("sdr_windows", "Help", nullptr));
     } // retranslateUi

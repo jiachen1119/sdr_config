@@ -11,26 +11,25 @@
 
 sdr_windows::sdr_windows(QWidget *parent) :
         QMainWindow(parent), ui(new Ui::sdr_windows) {
-    ui->setupUi(this);
-
+    init();
     //1. lineEdit file path init
-    QString filePath=ui->lineEdit_2->text();
+    config_filepath_=ui->lineEdit_2->text();
     //2. file read setting
     QSettings setting("./Setting.ini", QSettings::IniFormat); // to remember the path
     QString lastPath = setting.value("LastFilePath").toString();
 
     //...tool button connect
     connect(ui->toolButton_2,&QToolButton::clicked, this,[=]() mutable {
-        filePath=QFileDialog::getOpenFileName(this,"Open configuration file",
-                                                  lastPath,"configuration(*.conf)");
-        ui->lineEdit_2->setText(filePath);
+        config_filepath_=QFileDialog::getOpenFileName(this, "Open configuration file",
+                                                      lastPath, "configuration(*.conf)");
+        ui->lineEdit_2->setText(config_filepath_);
     });
 
     //set the Read button
     connect(ui->pushButton,&QPushButton::clicked, this,[&](){
         //read the configuration readFile
-        filePath=ui->lineEdit_2->text();
-        QFile readFile(filePath);
+        config_filepath_=ui->lineEdit_2->text();
+        QFile readFile(config_filepath_);
         if(!readFile.open(QIODevice::ReadOnly | QIODevice::ExistingOnly | QIODevice::Text)){
             QMessageBox::critical(this,"File Read Error","The readFile path is error, please retry!");
             qDebug()<<"Opening the configuration readFile failed!";
@@ -109,4 +108,9 @@ sdr_windows::sdr_windows(QWidget *parent) :
 
 sdr_windows::~sdr_windows() {
     delete ui;
+}
+
+void sdr_windows::init() {
+    ui->setupUi(this);
+    ui->radioButtonFile->setChecked(true);
 }
