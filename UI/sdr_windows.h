@@ -9,6 +9,7 @@
 #include <qdebug.h>
 #include <qfile.h>
 #include <qfiledialog.h>
+#include <qbuttongroup.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class sdr_windows; }
@@ -22,9 +23,13 @@ public:
     void init();
     ~sdr_windows() override;
 
+public slots:
+    void btnToggled(int btn, bool checked);
+
 private:
     Ui::sdr_windows *ui;
     QString config_filepath_;
+    QString config_file_lastpath_;
     QString data_type_;
     int sampling_freq_;
 

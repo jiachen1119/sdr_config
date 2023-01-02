@@ -29,7 +29,7 @@
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QWidget" name="widget_2" native="true">
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1">
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
@@ -92,7 +92,7 @@
      </item>
      <item>
       <widget class="QWidget" name="widget" native="true">
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,1">
         <item>
          <widget class="QLabel" name="label_2">
           <property name="text">
@@ -115,7 +115,7 @@
      </item>
      <item>
       <widget class="QWidget" name="widget_3" native="true">
-       <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="3,3,1">
         <item>
          <widget class="QLabel" name="label_3">
           <property name="text">
@@ -126,12 +126,12 @@
         <item>
          <widget class="QLineEdit" name="lineEdit_2">
           <property name="text">
-           <string>../1.conf</string>
+           <string>../file.conf</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QToolButton" name="toolButton_2">
+         <widget class="QToolButton" name="toolButton_conf">
           <property name="text">
            <string>...</string>
           </property>
@@ -167,10 +167,10 @@
    <widget class="QWidget" name="widget_4" native="true">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>540</y>
-      <width>270</width>
-      <height>43</height>
+      <x>400</x>
+      <y>490</y>
+      <width>371</width>
+      <height>61</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -207,18 +207,18 @@
      </rect>
     </property>
     <property name="title">
-     <string>GroupBox</string>
+     <string>Signal Source Implementation</string>
     </property>
     <widget class="QWidget" name="widget_5" native="true">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>0</x>
        <y>30</y>
        <width>311</width>
        <height>41</height>
       </rect>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="1,1,1">
       <item>
        <widget class="QRadioButton" name="radioButtonFile">
         <property name="text">
@@ -253,7 +253,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>GroupBox</string>
+     <string>Settings-2</string>
     </property>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="geometry">
@@ -265,10 +265,183 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
-     <widget class="QWidget" name="page"/>
-     <widget class="QWidget" name="page_2"/>
+     <widget class="QWidget" name="page">
+      <widget class="QWidget" name="widget_6" native="true">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>351</width>
+         <height>43</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_8">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Raw Signal File Path</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_3"/>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="page_2">
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>361</width>
+         <height>271</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QWidget" name="widget_7" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="1,1">
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Gain</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEdit_gain">
+             <property name="maximumSize">
+              <size>
+               <width>296</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>40</string>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget_8" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="1,1">
+           <item>
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>RF Gain</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEdit_rf">
+             <property name="maximumSize">
+              <size>
+               <width>296</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>40</string>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget_9" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="1,1">
+           <item>
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>IF Gain</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEdit_if">
+             <property name="maximumSize">
+              <size>
+               <width>296</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>30</string>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget_10" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1,1">
+           <item>
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>AGC</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBox_agc">
+             <property name="text">
+              <string>Enable</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget_11" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="1,1">
+           <item>
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>Bias Voltage</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBox_bias">
+             <property name="text">
+              <string>Enable</string>
+             </property>
+             <property name="tristate">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </widget>
    </widget>
   </widget>

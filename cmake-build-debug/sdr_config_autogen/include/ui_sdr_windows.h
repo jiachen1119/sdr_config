@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
@@ -52,7 +53,7 @@ public:
     QHBoxLayout *horizontalLayout_5;
     QLabel *label_3;
     QLineEdit *lineEdit_2;
-    QToolButton *toolButton_2;
+    QToolButton *toolButton_conf;
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_2;
     QWidget *layoutWidget1;
@@ -71,7 +72,34 @@ public:
     QGroupBox *groupBox_3;
     QStackedWidget *stackedWidget;
     QWidget *page;
+    QWidget *widget_6;
+    QHBoxLayout *horizontalLayout_8;
+    QLabel *label_4;
+    QLineEdit *lineEdit_3;
+    QToolButton *toolButton;
     QWidget *page_2;
+    QWidget *widget1;
+    QVBoxLayout *verticalLayout_2;
+    QWidget *widget_7;
+    QHBoxLayout *horizontalLayout_9;
+    QLabel *label_5;
+    QLineEdit *lineEdit_gain;
+    QWidget *widget_8;
+    QHBoxLayout *horizontalLayout_10;
+    QLabel *label_6;
+    QLineEdit *lineEdit_rf;
+    QWidget *widget_9;
+    QHBoxLayout *horizontalLayout_11;
+    QLabel *label_7;
+    QLineEdit *lineEdit_if;
+    QWidget *widget_10;
+    QHBoxLayout *horizontalLayout_12;
+    QLabel *label_8;
+    QCheckBox *checkBox_agc;
+    QWidget *widget_11;
+    QHBoxLayout *horizontalLayout_13;
+    QLabel *label_9;
+    QCheckBox *checkBox_bias;
     QMenuBar *menubar;
     QMenu *menu;
     QMenu *menu_2;
@@ -119,6 +147,8 @@ public:
 
         horizontalLayout->addWidget(comboBox);
 
+        horizontalLayout->setStretch(0, 1);
+        horizontalLayout->setStretch(1, 1);
 
         verticalLayout->addWidget(widget_2);
 
@@ -137,6 +167,8 @@ public:
 
         horizontalLayout_4->addWidget(lineEdit);
 
+        horizontalLayout_4->setStretch(0, 1);
+        horizontalLayout_4->setStretch(1, 1);
 
         verticalLayout->addWidget(widget);
 
@@ -154,11 +186,14 @@ public:
 
         horizontalLayout_5->addWidget(lineEdit_2);
 
-        toolButton_2 = new QToolButton(widget_3);
-        toolButton_2->setObjectName(QString::fromUtf8("toolButton_2"));
+        toolButton_conf = new QToolButton(widget_3);
+        toolButton_conf->setObjectName(QString::fromUtf8("toolButton_conf"));
 
-        horizontalLayout_5->addWidget(toolButton_2);
+        horizontalLayout_5->addWidget(toolButton_conf);
 
+        horizontalLayout_5->setStretch(0, 3);
+        horizontalLayout_5->setStretch(1, 3);
+        horizontalLayout_5->setStretch(2, 1);
 
         verticalLayout->addWidget(widget_3);
 
@@ -176,7 +211,7 @@ public:
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
         widget_4 = new QWidget(centralwidget);
         widget_4->setObjectName(QString::fromUtf8("widget_4"));
-        widget_4->setGeometry(QRect(500, 540, 270, 43));
+        widget_4->setGeometry(QRect(400, 490, 371, 61));
         horizontalLayout_6 = new QHBoxLayout(widget_4);
         horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
         pushButton = new QPushButton(widget_4);
@@ -199,7 +234,7 @@ public:
         groupBox_2->setGeometry(QRect(30, 20, 311, 80));
         widget_5 = new QWidget(groupBox_2);
         widget_5->setObjectName(QString::fromUtf8("widget_5"));
-        widget_5->setGeometry(QRect(20, 30, 311, 41));
+        widget_5->setGeometry(QRect(0, 30, 311, 41));
         horizontalLayout_7 = new QHBoxLayout(widget_5);
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
         radioButtonFile = new QRadioButton(widget_5);
@@ -217,6 +252,9 @@ public:
 
         horizontalLayout_7->addWidget(radioButtonUSRP);
 
+        horizontalLayout_7->setStretch(0, 1);
+        horizontalLayout_7->setStretch(1, 1);
+        horizontalLayout_7->setStretch(2, 1);
         groupBox_3 = new QGroupBox(centralwidget);
         groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
         groupBox_3->setGeometry(QRect(370, 130, 391, 321));
@@ -225,9 +263,137 @@ public:
         stackedWidget->setGeometry(QRect(10, 30, 371, 281));
         page = new QWidget();
         page->setObjectName(QString::fromUtf8("page"));
+        widget_6 = new QWidget(page);
+        widget_6->setObjectName(QString::fromUtf8("widget_6"));
+        widget_6->setGeometry(QRect(10, 10, 351, 43));
+        horizontalLayout_8 = new QHBoxLayout(widget_6);
+        horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
+        label_4 = new QLabel(widget_6);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        horizontalLayout_8->addWidget(label_4);
+
+        lineEdit_3 = new QLineEdit(widget_6);
+        lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
+
+        horizontalLayout_8->addWidget(lineEdit_3);
+
+        toolButton = new QToolButton(widget_6);
+        toolButton->setObjectName(QString::fromUtf8("toolButton"));
+
+        horizontalLayout_8->addWidget(toolButton);
+
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QString::fromUtf8("page_2"));
+        widget1 = new QWidget(page_2);
+        widget1->setObjectName(QString::fromUtf8("widget1"));
+        widget1->setGeometry(QRect(10, 10, 361, 271));
+        verticalLayout_2 = new QVBoxLayout(widget1);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        widget_7 = new QWidget(widget1);
+        widget_7->setObjectName(QString::fromUtf8("widget_7"));
+        horizontalLayout_9 = new QHBoxLayout(widget_7);
+        horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
+        label_5 = new QLabel(widget_7);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+
+        horizontalLayout_9->addWidget(label_5);
+
+        lineEdit_gain = new QLineEdit(widget_7);
+        lineEdit_gain->setObjectName(QString::fromUtf8("lineEdit_gain"));
+        lineEdit_gain->setMaximumSize(QSize(296, 16777215));
+        lineEdit_gain->setClearButtonEnabled(false);
+
+        horizontalLayout_9->addWidget(lineEdit_gain);
+
+        horizontalLayout_9->setStretch(0, 1);
+        horizontalLayout_9->setStretch(1, 1);
+
+        verticalLayout_2->addWidget(widget_7);
+
+        widget_8 = new QWidget(widget1);
+        widget_8->setObjectName(QString::fromUtf8("widget_8"));
+        horizontalLayout_10 = new QHBoxLayout(widget_8);
+        horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
+        label_6 = new QLabel(widget_8);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+
+        horizontalLayout_10->addWidget(label_6);
+
+        lineEdit_rf = new QLineEdit(widget_8);
+        lineEdit_rf->setObjectName(QString::fromUtf8("lineEdit_rf"));
+        lineEdit_rf->setMaximumSize(QSize(296, 16777215));
+        lineEdit_rf->setClearButtonEnabled(false);
+
+        horizontalLayout_10->addWidget(lineEdit_rf);
+
+        horizontalLayout_10->setStretch(0, 1);
+        horizontalLayout_10->setStretch(1, 1);
+
+        verticalLayout_2->addWidget(widget_8);
+
+        widget_9 = new QWidget(widget1);
+        widget_9->setObjectName(QString::fromUtf8("widget_9"));
+        horizontalLayout_11 = new QHBoxLayout(widget_9);
+        horizontalLayout_11->setObjectName(QString::fromUtf8("horizontalLayout_11"));
+        label_7 = new QLabel(widget_9);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+
+        horizontalLayout_11->addWidget(label_7);
+
+        lineEdit_if = new QLineEdit(widget_9);
+        lineEdit_if->setObjectName(QString::fromUtf8("lineEdit_if"));
+        lineEdit_if->setMaximumSize(QSize(296, 16777215));
+        lineEdit_if->setClearButtonEnabled(false);
+
+        horizontalLayout_11->addWidget(lineEdit_if);
+
+        horizontalLayout_11->setStretch(0, 1);
+        horizontalLayout_11->setStretch(1, 1);
+
+        verticalLayout_2->addWidget(widget_9);
+
+        widget_10 = new QWidget(widget1);
+        widget_10->setObjectName(QString::fromUtf8("widget_10"));
+        horizontalLayout_12 = new QHBoxLayout(widget_10);
+        horizontalLayout_12->setObjectName(QString::fromUtf8("horizontalLayout_12"));
+        label_8 = new QLabel(widget_10);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+
+        horizontalLayout_12->addWidget(label_8);
+
+        checkBox_agc = new QCheckBox(widget_10);
+        checkBox_agc->setObjectName(QString::fromUtf8("checkBox_agc"));
+
+        horizontalLayout_12->addWidget(checkBox_agc);
+
+        horizontalLayout_12->setStretch(0, 1);
+        horizontalLayout_12->setStretch(1, 1);
+
+        verticalLayout_2->addWidget(widget_10);
+
+        widget_11 = new QWidget(widget1);
+        widget_11->setObjectName(QString::fromUtf8("widget_11"));
+        horizontalLayout_13 = new QHBoxLayout(widget_11);
+        horizontalLayout_13->setObjectName(QString::fromUtf8("horizontalLayout_13"));
+        label_9 = new QLabel(widget_11);
+        label_9->setObjectName(QString::fromUtf8("label_9"));
+
+        horizontalLayout_13->addWidget(label_9);
+
+        checkBox_bias = new QCheckBox(widget_11);
+        checkBox_bias->setObjectName(QString::fromUtf8("checkBox_bias"));
+        checkBox_bias->setTristate(false);
+
+        horizontalLayout_13->addWidget(checkBox_bias);
+
+        horizontalLayout_13->setStretch(0, 1);
+        horizontalLayout_13->setStretch(1, 1);
+
+        verticalLayout_2->addWidget(widget_11);
+
         stackedWidget->addWidget(page_2);
         sdr_windows->setCentralWidget(centralwidget);
         menubar = new QMenuBar(sdr_windows);
@@ -252,7 +418,7 @@ public:
         retranslateUi(sdr_windows);
 
         comboBox->setCurrentIndex(3);
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(sdr_windows);
@@ -280,16 +446,28 @@ public:
         label_2->setText(QCoreApplication::translate("sdr_windows", "Sample Rate (Hz)", nullptr));
         lineEdit->setText(QCoreApplication::translate("sdr_windows", "4e6", nullptr));
         label_3->setText(QCoreApplication::translate("sdr_windows", "Read Config Path ", nullptr));
-        lineEdit_2->setText(QCoreApplication::translate("sdr_windows", "../1.conf", nullptr));
-        toolButton_2->setText(QCoreApplication::translate("sdr_windows", "...", nullptr));
+        lineEdit_2->setText(QCoreApplication::translate("sdr_windows", "../file.conf", nullptr));
+        toolButton_conf->setText(QCoreApplication::translate("sdr_windows", "...", nullptr));
         pushButton->setText(QCoreApplication::translate("sdr_windows", "Read", nullptr));
         pushButton_2->setText(QCoreApplication::translate("sdr_windows", "Write", nullptr));
         pushButton_3->setText(QCoreApplication::translate("sdr_windows", "Default", nullptr));
-        groupBox_2->setTitle(QCoreApplication::translate("sdr_windows", "GroupBox", nullptr));
+        groupBox_2->setTitle(QCoreApplication::translate("sdr_windows", "Signal Source Implementation", nullptr));
         radioButtonFile->setText(QCoreApplication::translate("sdr_windows", "File", nullptr));
         radioButtonHackrf->setText(QCoreApplication::translate("sdr_windows", "HackRF", nullptr));
         radioButtonUSRP->setText(QCoreApplication::translate("sdr_windows", "USRP", nullptr));
-        groupBox_3->setTitle(QCoreApplication::translate("sdr_windows", "GroupBox", nullptr));
+        groupBox_3->setTitle(QCoreApplication::translate("sdr_windows", "Settings-2", nullptr));
+        label_4->setText(QCoreApplication::translate("sdr_windows", "Raw Signal File Path", nullptr));
+        toolButton->setText(QCoreApplication::translate("sdr_windows", "...", nullptr));
+        label_5->setText(QCoreApplication::translate("sdr_windows", "Gain", nullptr));
+        lineEdit_gain->setText(QCoreApplication::translate("sdr_windows", "40", nullptr));
+        label_6->setText(QCoreApplication::translate("sdr_windows", "RF Gain", nullptr));
+        lineEdit_rf->setText(QCoreApplication::translate("sdr_windows", "40", nullptr));
+        label_7->setText(QCoreApplication::translate("sdr_windows", "IF Gain", nullptr));
+        lineEdit_if->setText(QCoreApplication::translate("sdr_windows", "30", nullptr));
+        label_8->setText(QCoreApplication::translate("sdr_windows", "AGC", nullptr));
+        checkBox_agc->setText(QCoreApplication::translate("sdr_windows", "Enable", nullptr));
+        label_9->setText(QCoreApplication::translate("sdr_windows", "Bias Voltage", nullptr));
+        checkBox_bias->setText(QCoreApplication::translate("sdr_windows", "Enable", nullptr));
         menu->setTitle(QCoreApplication::translate("sdr_windows", "File", nullptr));
         menu_2->setTitle(QCoreApplication::translate("sdr_windows", "Help", nullptr));
     } // retranslateUi

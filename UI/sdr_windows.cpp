@@ -12,16 +12,14 @@
 sdr_windows::sdr_windows(QWidget *parent) :
         QMainWindow(parent), ui(new Ui::sdr_windows) {
     init();
-    //1. lineEdit file path init
-    config_filepath_=ui->lineEdit_2->text();
-    //2. file read setting
-    QSettings setting("./Setting.ini", QSettings::IniFormat); // to remember the path
-    QString lastPath = setting.value("LastFilePath").toString();
+    // to remember the path
+    QSettings setting("./Setting.ini", QSettings::IniFormat);
+    config_file_lastpath_= setting.value("LastFilePath").toString();
 
     //...tool button connect
-    connect(ui->toolButton_2,&QToolButton::clicked, this,[=]() mutable {
+    connect(ui->toolButton_conf,&QToolButton::clicked, this,[=]() mutable {
         config_filepath_=QFileDialog::getOpenFileName(this, "Open configuration file",
-                                                      lastPath, "configuration(*.conf)");
+                                                      config_file_lastpath_, "configuration(*.conf)");
         ui->lineEdit_2->setText(config_filepath_);
     });
 
@@ -61,9 +59,9 @@ sdr_windows::sdr_windows(QWidget *parent) :
 
     //set the Write button
     connect(ui->pushButton_2,&QPushButton::clicked, this,[&](){
-        QString dataType=ui->comboBox->currentText();
-        QString samplingFreq=ui->lineEdit->text();
-        QFile openFile("../1.conf");
+        data_type_=ui->comboBox->currentText();
+        sampling_freq_=ui->lineEdit->text().toInt();
+        QFile openFile("../file.conf");
         QStringList readQStringList;
         if(!openFile.open(QIODevice::ReadOnly|QIODevice::Text|QIODevice::ExistingOnly))
             qDebug()<<"cannot find the model configuration file";
@@ -75,12 +73,12 @@ sdr_windows::sdr_windows(QWidget *parent) :
                 QString confKeyWord=dataQString.split("=").at(0);
                 if(confKeyWord.contains("sampling_frequency", Qt::CaseInsensitive)){
                     QStringList dataList=dataQString.split("=");
-                    QString str=QString("%1=%2\n").arg(confKeyWord).arg(samplingFreq);
+                    QString str=QString("%1=%2\n").arg(confKeyWord).arg(sampling_freq_);
                     dataQString=str;
                 }
                 if(dataQString.contains("item_type", Qt::CaseInsensitive)){
                     QStringList dataList=dataQString.split("=");
-                    QString str=QString("%1=%2\n").arg(confKeyWord).arg(dataType);
+                    QString str=QString("%1=%2\n").arg(confKeyWord).arg(data_type_);
                     dataQString=str;
                 }
                 readQStringList<<dataQString;
@@ -97,8 +95,14 @@ sdr_windows::sdr_windows(QWidget *parent) :
             }
             writeFile.close();
         }
-        system("gnss-sdr --config_file=../sdr_config.conf");
+        //system("gnss-sdr --config_file=../sdr_config.conf");
     });
+
+    QButtonGroup* function_btnGroup=new QButtonGroup(this);
+    function_btnGroup->addButton(ui->radioButtonFile,0);
+    function_btnGroup->addButton(ui->radioButtonHackrf,1);
+    function_btnGroup->addButton(ui->radioButtonUSRP,2);
+    connect(function_btnGroup, SIGNAL(idToggled(int, bool)), this, SLOT(btnToggled(int,bool)));
 
     //set the Default button
     connect(ui->pushButton_3,&QPushButton::clicked, this,[&](){
@@ -112,5 +116,32 @@ sdr_windows::~sdr_windows() {
 
 void sdr_windows::init() {
     ui->setupUi(this);
+    //default select the first radioButtion
     ui->radioButtonFile->setChecked(true);
+    ui->stackedWidget->setCurrentWidget(ui->page);
+    //setting
+    data_type_=ui->comboBox->currentText();
+    config_filepath_=ui->lineEdit_2->text();
+    ui->checkBox_bias->setCheckState(Qt::Checked);
+}
+
+void sdr_windows::btnToggled(int btn, bool checked) {
+    if (!checked)
+        return;
+    switch (btn)
+    {
+        case 0:
+            ui->stackedWidget->setCurrentWidget(ui->page);
+            qDebug("This is button zero");
+            break;
+        case 1:
+            ui->stackedWidget->setCurrentWidget(ui->page_2);
+            qDebug("This is button one");
+            break;
+        case 2:
+            qDebug("This is button two");
+            break;
+        default:
+            break;
+    }
 }
