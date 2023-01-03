@@ -15,13 +15,16 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class sdr_windows; }
 QT_END_NAMESPACE
 
+#define combobox_true QVariant(-1)
+#define combobox_false QVariant(0)
+
 class sdr_windows : public QMainWindow {
 Q_OBJECT
 
 public:
     explicit sdr_windows(QWidget *parent = nullptr);
     void init();
-    QStringList readConfigInLine(QString file_path);
+    QStringList readConfigInLine(const QString& file_path);
     ~sdr_windows() override;
 
 public slots:
@@ -33,6 +36,8 @@ private:
     QString config_file_lastpath_;
     QString data_type_;
     QString sampling_freq_;
+    QButtonGroup* function_btnGroup_{};
+    QString model_config_file_="../file.conf";
 
 };
 
