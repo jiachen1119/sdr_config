@@ -73,6 +73,22 @@ build CMakeFiles/sdr_config.dir/UI/sdr_windows.cpp.o: CXX_COMPILER__sdr_config_D
   OBJECT_DIR = CMakeFiles/sdr_config.dir
   OBJECT_FILE_DIR = CMakeFiles/sdr_config.dir/UI
 
+build CMakeFiles/sdr_config.dir/HackRF/HackRF.cpp.o: CXX_COMPILER__sdr_config_Debug /home/tang/CLionProjects/sdr_config/HackRF/HackRF.cpp || cmake_object_order_depends_target_sdr_config
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/sdr_config.dir/HackRF/HackRF.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always -fPIC
+  INCLUDES = -I/home/tang/CLionProjects/sdr_config/cmake-build-debug/sdr_config_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets
+  OBJECT_DIR = CMakeFiles/sdr_config.dir
+  OBJECT_FILE_DIR = CMakeFiles/sdr_config.dir/HackRF
+
+build CMakeFiles/sdr_config.dir/myQString/myQString.cpp.o: CXX_COMPILER__sdr_config_Debug /home/tang/CLionProjects/sdr_config/myQString/myQString.cpp || cmake_object_order_depends_target_sdr_config
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/sdr_config.dir/myQString/myQString.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always -fPIC
+  INCLUDES = -I/home/tang/CLionProjects/sdr_config/cmake-build-debug/sdr_config_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets
+  OBJECT_DIR = CMakeFiles/sdr_config.dir
+  OBJECT_FILE_DIR = CMakeFiles/sdr_config.dir/myQString
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target sdr_config
@@ -81,7 +97,7 @@ build CMakeFiles/sdr_config.dir/UI/sdr_windows.cpp.o: CXX_COMPILER__sdr_config_D
 #############################################
 # Link the executable sdr_config
 
-build sdr_config: CXX_EXECUTABLE_LINKER__sdr_config_Debug CMakeFiles/sdr_config.dir/sdr_config_autogen/mocs_compilation.cpp.o CMakeFiles/sdr_config.dir/main.cpp.o CMakeFiles/sdr_config.dir/UI/sdr_windows.cpp.o | /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3 /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3 /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3 || sdr_config_autogen sdr_config_autogen_timestamp_deps
+build sdr_config: CXX_EXECUTABLE_LINKER__sdr_config_Debug CMakeFiles/sdr_config.dir/sdr_config_autogen/mocs_compilation.cpp.o CMakeFiles/sdr_config.dir/main.cpp.o CMakeFiles/sdr_config.dir/UI/sdr_windows.cpp.o CMakeFiles/sdr_config.dir/HackRF/HackRF.cpp.o CMakeFiles/sdr_config.dir/myQString/myQString.cpp.o | /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3 /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3 /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3 || sdr_config_autogen sdr_config_autogen_timestamp_deps
   FLAGS = -g
   LINK_LIBRARIES = /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3  /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3  /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3
   OBJECT_DIR = CMakeFiles/sdr_config.dir
@@ -139,7 +155,7 @@ build sdr_config_autogen/timestamp sdr_config_autogen/mocs_compilation.cpp | ${c
 #############################################
 # Phony custom command for CMakeFiles/sdr_config_autogen_timestamp_deps
 
-build CMakeFiles/sdr_config_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/sdr_config_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3 /usr/lib/qt5/bin/moc /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3 /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3 /usr/lib/qt5/bin/uic
+build CMakeFiles/sdr_config_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/sdr_config_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3 /usr/lib/qt5/bin/moc /usr/lib/qt5/bin/uic /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3 /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3
 
 
 #############################################

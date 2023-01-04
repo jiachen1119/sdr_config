@@ -1,5 +1,7 @@
 sdr_config_autogen/timestamp: \
 	/home/tang/CLionProjects/sdr_config/CMakeLists.txt \
+	/home/tang/CLionProjects/sdr_config/HackRF/HackRF.cpp \
+	/home/tang/CLionProjects/sdr_config/HackRF/HackRF.h \
 	/home/tang/CLionProjects/sdr_config/UI/sdr_windows.cpp \
 	/home/tang/CLionProjects/sdr_config/UI/sdr_windows.h \
 	/home/tang/CLionProjects/sdr_config/cmake-build-debug/CMakeFiles/3.24.2/CMakeCCompiler.cmake \
@@ -7,6 +9,8 @@ sdr_config_autogen/timestamp: \
 	/home/tang/CLionProjects/sdr_config/cmake-build-debug/CMakeFiles/3.24.2/CMakeSystem.cmake \
 	/home/tang/CLionProjects/sdr_config/cmake-build-debug/sdr_config_autogen/moc_predefs.h \
 	/home/tang/CLionProjects/sdr_config/main.cpp \
+	/home/tang/CLionProjects/sdr_config/myQString/myQString.cpp \
+	/home/tang/CLionProjects/sdr_config/myQString/myQString.h \
 	/snap/clion/218/bin/cmake/linux/share/cmake-3.24/Modules/CMakeCInformation.cmake \
 	/snap/clion/218/bin/cmake/linux/share/cmake-3.24/Modules/CMakeCXXInformation.cmake \
 	/snap/clion/218/bin/cmake/linux/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake \
@@ -263,6 +267,8 @@ sdr_config_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
 	/usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
 	/usr/include/x86_64-linux-gnu/gnu/stubs.h \
+	/usr/include/x86_64-linux-gnu/qt5/QtCore/QString \
+	/usr/include/x86_64-linux-gnu/qt5/QtCore/QStringList \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qarraydata.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic.h \

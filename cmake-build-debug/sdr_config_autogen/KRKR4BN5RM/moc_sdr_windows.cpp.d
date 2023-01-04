@@ -1,5 +1,6 @@
 /home/tang/CLionProjects/sdr_config/cmake-build-debug/sdr_config_autogen/KRKR4BN5RM/moc_sdr_windows.cpp: /home/tang/CLionProjects/sdr_config/UI/sdr_windows.h \
   /home/tang/CLionProjects/sdr_config/cmake-build-debug/sdr_config_autogen/moc_predefs.h \
+  /home/tang/CLionProjects/sdr_config/HackRF/HackRF.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
   /usr/include/assert.h \
@@ -238,6 +239,8 @@
   /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtCore/QString \
+  /usr/include/x86_64-linux-gnu/qt5/QtCore/QStringList \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qarraydata.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic.h \

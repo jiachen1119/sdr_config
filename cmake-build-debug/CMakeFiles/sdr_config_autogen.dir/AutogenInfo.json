@@ -79,9 +79,21 @@
 	"HEADERS" : 
 	[
 		[
+			"/home/tang/CLionProjects/sdr_config/HackRF/HackRF.h",
+			"MU",
+			"PVCM3WMDFF/moc_HackRF.cpp",
+			null
+		],
+		[
 			"/home/tang/CLionProjects/sdr_config/UI/sdr_windows.h",
 			"MU",
 			"KRKR4BN5RM/moc_sdr_windows.cpp",
+			null
+		],
+		[
+			"/home/tang/CLionProjects/sdr_config/myQString/myQString.h",
+			"MU",
+			"75H7WQBFIY/moc_myQString.cpp",
 			null
 		]
 	],
@@ -135,8 +147,14 @@
 	"SETTINGS_FILE" : "/home/tang/CLionProjects/sdr_config/cmake-build-debug/CMakeFiles/sdr_config_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "/home/tang/CLionProjects/sdr_config/HackRF/HackRF.cpp", "MU", null ],
 		[ "/home/tang/CLionProjects/sdr_config/UI/sdr_windows.cpp", "MU", null ],
-		[ "/home/tang/CLionProjects/sdr_config/main.cpp", "MU", null ]
+		[ "/home/tang/CLionProjects/sdr_config/main.cpp", "MU", null ],
+		[
+			"/home/tang/CLionProjects/sdr_config/myQString/myQString.cpp",
+			"MU",
+			null
+		]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

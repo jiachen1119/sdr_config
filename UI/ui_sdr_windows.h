@@ -78,7 +78,7 @@ public:
     QLineEdit *lineEdit_3;
     QToolButton *toolButton;
     QWidget *page_2;
-    QWidget *widget1;
+    QWidget *layoutWidget2;
     QVBoxLayout *verticalLayout_2;
     QWidget *widget_7;
     QHBoxLayout *horizontalLayout_9;
@@ -286,13 +286,13 @@ public:
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QString::fromUtf8("page_2"));
-        widget1 = new QWidget(page_2);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        widget1->setGeometry(QRect(10, 10, 361, 271));
-        verticalLayout_2 = new QVBoxLayout(widget1);
+        layoutWidget2 = new QWidget(page_2);
+        layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(10, 10, 361, 271));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget2);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        widget_7 = new QWidget(widget1);
+        widget_7 = new QWidget(layoutWidget2);
         widget_7->setObjectName(QString::fromUtf8("widget_7"));
         horizontalLayout_9 = new QHBoxLayout(widget_7);
         horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
@@ -313,7 +313,7 @@ public:
 
         verticalLayout_2->addWidget(widget_7);
 
-        widget_8 = new QWidget(widget1);
+        widget_8 = new QWidget(layoutWidget2);
         widget_8->setObjectName(QString::fromUtf8("widget_8"));
         horizontalLayout_10 = new QHBoxLayout(widget_8);
         horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
@@ -334,7 +334,7 @@ public:
 
         verticalLayout_2->addWidget(widget_8);
 
-        widget_9 = new QWidget(widget1);
+        widget_9 = new QWidget(layoutWidget2);
         widget_9->setObjectName(QString::fromUtf8("widget_9"));
         horizontalLayout_11 = new QHBoxLayout(widget_9);
         horizontalLayout_11->setObjectName(QString::fromUtf8("horizontalLayout_11"));
@@ -355,7 +355,7 @@ public:
 
         verticalLayout_2->addWidget(widget_9);
 
-        widget_10 = new QWidget(widget1);
+        widget_10 = new QWidget(layoutWidget2);
         widget_10->setObjectName(QString::fromUtf8("widget_10"));
         horizontalLayout_12 = new QHBoxLayout(widget_10);
         horizontalLayout_12->setObjectName(QString::fromUtf8("horizontalLayout_12"));
@@ -374,7 +374,7 @@ public:
 
         verticalLayout_2->addWidget(widget_10);
 
-        widget_11 = new QWidget(widget1);
+        widget_11 = new QWidget(layoutWidget2);
         widget_11->setObjectName(QString::fromUtf8("widget_11"));
         horizontalLayout_13 = new QHBoxLayout(widget_11);
         horizontalLayout_13->setObjectName(QString::fromUtf8("horizontalLayout_13"));
@@ -459,11 +459,11 @@ public:
         label_4->setText(QCoreApplication::translate("sdr_windows", "Raw Signal File Path", nullptr));
         toolButton->setText(QCoreApplication::translate("sdr_windows", "...", nullptr));
         label_5->setText(QCoreApplication::translate("sdr_windows", "Gain", nullptr));
-        lineEdit_gain->setText(QCoreApplication::translate("sdr_windows", "40", nullptr));
+        lineEdit_gain->setText(QCoreApplication::translate("sdr_windows", "0", nullptr));
         label_6->setText(QCoreApplication::translate("sdr_windows", "RF Gain", nullptr));
-        lineEdit_rf->setText(QCoreApplication::translate("sdr_windows", "40", nullptr));
+        lineEdit_rf->setText(QCoreApplication::translate("sdr_windows", "0", nullptr));
         label_7->setText(QCoreApplication::translate("sdr_windows", "IF Gain", nullptr));
-        lineEdit_if->setText(QCoreApplication::translate("sdr_windows", "30", nullptr));
+        lineEdit_if->setText(QCoreApplication::translate("sdr_windows", "0", nullptr));
         label_8->setText(QCoreApplication::translate("sdr_windows", "AGC", nullptr));
         checkBox_agc->setText(QCoreApplication::translate("sdr_windows", "Enable", nullptr));
         label_9->setText(QCoreApplication::translate("sdr_windows", "Bias Voltage", nullptr));
