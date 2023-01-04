@@ -80,6 +80,9 @@ sdr_windows::~sdr_windows() {
 void sdr_windows::init() {
     //todo: make the special edit line only written numbers
     ui->setupUi(this);
+    QLabel* statusLabel=new QLabel
+            ("Welcome to Config Creator for GNSS-SDR! (Written by Kepeng Luan from SEU)");
+    ui->statusbar->addWidget(statusLabel);
     //default select the first radioButton
     ui->radioButtonFile->setChecked(true);
     ui->stackedWidget->setCurrentWidget(ui->page);
@@ -88,6 +91,7 @@ void sdr_windows::init() {
     function_btnGroup_->addButton(ui->radioButtonFile,0);
     function_btnGroup_->addButton(ui->radioButtonHackrf,1);
     function_btnGroup_->addButton(ui->radioButtonUSRP,2);
+
     //basic widget setting
     data_type_=ui->comboBox->currentText();
     config_filepath_=ui->lineEdit_2->text();
@@ -170,6 +174,7 @@ void sdr_windows::fileConfig(QStringList data_list, bool read_or_write) {
                 ui->comboBox->setCurrentText(data_type_);
             }
         }
+        ui->statusbar->showMessage("File part reading completed",2000);
     }
     else{
         for (int list_index = 0; list_index < data_list.size(); ++list_index) {
@@ -186,12 +191,13 @@ void sdr_windows::fileConfig(QStringList data_list, bool read_or_write) {
         }
         QFile writeFile("../sdr_config.conf");
         if(!writeFile.open(QIODevice::WriteOnly|QIODevice::Text))
-            qDebug()<<"sdr_config.conf don't exist";
+            ui->statusbar->showMessage("sdr_config.conf not found, already created",2000);
         else{
             for (int index = 0; index < data_list.size(); ++index) {
                 writeFile.write(data_list.at(index).toStdString().c_str());
             }
             writeFile.close();
+            ui->statusbar->showMessage("File config completed!",2000);
         }
         //system("gnss-sdr --config_file=../sdr_config.conf");
     }
@@ -208,6 +214,7 @@ void sdr_windows::hackrfConfig(QStringList data_list, bool read_or_write) {
             ui->checkBox_agc->setCheckState(Qt::Checked);
         else
             ui->checkBox_agc->setCheckState(Qt::Unchecked);
+        ui->statusbar->showMessage("Hackrf part reading completed",2000);
     }
     else {
         hackRf_.setSamplingFrequency(ui->lineEdit_2->text().toInt());
@@ -221,12 +228,13 @@ void sdr_windows::hackrfConfig(QStringList data_list, bool read_or_write) {
         hackRf_.HackrfGetConfig(data_list);
         QFile writeFile("../sdr_config.conf");
         if (!writeFile.open(QIODevice::WriteOnly | QIODevice::Text))
-            qDebug() << "sdr_config.conf don't exist";
+            ui->statusbar->showMessage("sdr_config.conf not found, already created",2000);
         else {
             for (int index = 0; index < data_list.size(); ++index) {
                 writeFile.write(data_list.at(index).toStdString().c_str());
             }
             writeFile.close();
+            ui->statusbar->showMessage("hackrf config completed!",2000);
         }
     }
 }

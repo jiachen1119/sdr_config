@@ -35,6 +35,7 @@ public slots:
 
 private:
     Ui::sdr_windows *ui;
+
     QString config_filepath_;
     QString config_file_lastpath_;
     QString data_type_;
