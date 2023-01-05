@@ -14,11 +14,19 @@ sdr_windows::sdr_windows(QWidget *parent) :
         QMainWindow(parent), ui(new Ui::sdr_windows) {
     init();
     // to remember the path
-    QSettings setting("./Setting.ini", QSettings::IniFormat);
+    // todo: solve the bug of setting(two ... button)
+    QSettings setting("../Setting.ini", QSettings::IniFormat);
     config_file_lastpath_= setting.value("LastFilePath").toString();
+    rawData_lastpath_=setting.value("RawData_LastPath").toString();
+    setting.sync();
 
     //...tool button connect
-    connect(ui->toolButton_conf,&QToolButton::clicked, this,[=]() mutable {
+    connect(ui->toolButton,&QToolButton::clicked, this,[&]()  {
+        rawData_filepath_=QFileDialog::getOpenFileName(this, "Open Raw data",
+                                                      rawData_lastpath_, "raw data(*.bin *.dat)");
+        ui->lineEdit_3->setText(rawData_filepath_);
+    });
+    connect(ui->toolButton_conf,&QToolButton::clicked, this,[&]()  {
         config_filepath_=QFileDialog::getOpenFileName(this, "Open configuration file",
                                                       config_file_lastpath_, "configuration(*.conf)");
         ui->lineEdit_2->setText(config_filepath_);
@@ -166,6 +174,7 @@ void sdr_windows::fileConfig(QStringList data_list, bool read_or_write) {
             myQString myStr(data_list.at(i));
             QString keyWord=myStr.readKeyWordAll();
             if(keyWord.contains("SignalSource.sampling_frequency", Qt::CaseSensitive)){
+                //because some read datalist is null, readData sometimes can be out of range
                 sampling_freq_=myStr.readData();
                 ui->lineEdit->setText(sampling_freq_);
             }
@@ -173,10 +182,15 @@ void sdr_windows::fileConfig(QStringList data_list, bool read_or_write) {
                 data_type_=myStr.readData();
                 ui->comboBox->setCurrentText(data_type_);
             }
+            if(keyWord.contains("SignalSource.filename", Qt::CaseSensitive)){
+                rawData_filepath_=myStr.readData();
+                ui->lineEdit_3->setText(rawData_filepath_);
+            }
         }
         ui->statusbar->showMessage("File part reading completed",2000);
     }
     else{
+        rawData_filepath_=ui->lineEdit_3->text();
         for (int list_index = 0; list_index < data_list.size(); ++list_index) {
             myQString myStr(data_list.at(list_index));
             QString keyWord=myStr.readKeyWordAll();
@@ -186,6 +200,10 @@ void sdr_windows::fileConfig(QStringList data_list, bool read_or_write) {
             }
             if (keyWord.contains("SignalSource.item_type",Qt::CaseInsensitive)){
                 QString str=QString("%1=%2\n").arg(keyWord).arg(data_type_);
+                data_list.replace(list_index, str);
+            }
+            if (keyWord.contains("SignalSource.filename",Qt::CaseInsensitive)){
+                QString str=QString("%1=%2\n").arg(keyWord).arg(rawData_filepath_);
                 data_list.replace(list_index, str);
             }
         }
@@ -199,7 +217,8 @@ void sdr_windows::fileConfig(QStringList data_list, bool read_or_write) {
             writeFile.close();
             ui->statusbar->showMessage("File config completed!",2000);
         }
-        //system("gnss-sdr --config_file=../sdr_config.conf");
+        //todo: terminal path need to be changed
+        system("gnss-sdr --config_file=../sdr_config.conf");
     }
 }
 
