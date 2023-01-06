@@ -54,6 +54,11 @@ public:
     QLabel *label_3;
     QLineEdit *lineEdit_2;
     QToolButton *toolButton_conf;
+    QWidget *widget_12;
+    QHBoxLayout *horizontalLayout_14;
+    QLabel *label_10;
+    QLineEdit *lineEdit_workPath;
+    QToolButton *toolButton_workPath;
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_2;
     QWidget *layoutWidget1;
@@ -122,7 +127,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         groupBox = new QGroupBox(centralwidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(30, 130, 311, 221));
+        groupBox->setGeometry(QRect(30, 130, 311, 321));
         verticalLayout = new QVBoxLayout(groupBox);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         widget_2 = new QWidget(groupBox);
@@ -196,6 +201,28 @@ public:
         horizontalLayout_5->setStretch(2, 1);
 
         verticalLayout->addWidget(widget_3);
+
+        widget_12 = new QWidget(groupBox);
+        widget_12->setObjectName(QString::fromUtf8("widget_12"));
+        horizontalLayout_14 = new QHBoxLayout(widget_12);
+        horizontalLayout_14->setObjectName(QString::fromUtf8("horizontalLayout_14"));
+        label_10 = new QLabel(widget_12);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
+
+        horizontalLayout_14->addWidget(label_10);
+
+        lineEdit_workPath = new QLineEdit(widget_12);
+        lineEdit_workPath->setObjectName(QString::fromUtf8("lineEdit_workPath"));
+
+        horizontalLayout_14->addWidget(lineEdit_workPath);
+
+        toolButton_workPath = new QToolButton(widget_12);
+        toolButton_workPath->setObjectName(QString::fromUtf8("toolButton_workPath"));
+
+        horizontalLayout_14->addWidget(toolButton_workPath);
+
+
+        verticalLayout->addWidget(widget_12);
 
         layoutWidget = new QWidget(centralwidget);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
@@ -418,7 +445,7 @@ public:
         retranslateUi(sdr_windows);
 
         comboBox->setCurrentIndex(3);
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(sdr_windows);
@@ -448,6 +475,9 @@ public:
         label_3->setText(QCoreApplication::translate("sdr_windows", "Read Config Path ", nullptr));
         lineEdit_2->setText(QCoreApplication::translate("sdr_windows", "../file.conf", nullptr));
         toolButton_conf->setText(QCoreApplication::translate("sdr_windows", "...", nullptr));
+        label_10->setText(QCoreApplication::translate("sdr_windows", "Working Place", nullptr));
+        lineEdit_workPath->setText(QString());
+        toolButton_workPath->setText(QCoreApplication::translate("sdr_windows", "...", nullptr));
         pushButton->setText(QCoreApplication::translate("sdr_windows", "Read", nullptr));
         pushButton_2->setText(QCoreApplication::translate("sdr_windows", "Write", nullptr));
         pushButton_3->setText(QCoreApplication::translate("sdr_windows", "Default", nullptr));

@@ -32,6 +32,12 @@ sdr_windows::sdr_windows(QWidget *parent) :
         ui->lineEdit_2->setText(config_filepath_);
     });
 
+    connect(ui->toolButton_workPath,&QToolButton::clicked, this,[&]()  {
+        workPlace_path_=QFileDialog::getExistingDirectory(this, "Choose the workPlace",
+                                                      config_file_lastpath_);
+        ui->lineEdit_workPath->setText(workPlace_path_);
+    });
+
     //set the Read button
     connect(ui->pushButton,&QPushButton::clicked, this,[&](){
         config_filepath_=ui->lineEdit_2->text();
@@ -103,6 +109,8 @@ void sdr_windows::init() {
     //basic widget setting
     data_type_=ui->comboBox->currentText();
     config_filepath_=ui->lineEdit_2->text();
+    workPlace_path_=QDir::currentPath();
+    ui->lineEdit_workPath->setText(workPlace_path_);
     ui->checkBox_bias->setCheckState(Qt::Checked);
 }
 
@@ -207,7 +215,7 @@ void sdr_windows::fileConfig(QStringList data_list, bool read_or_write) {
                 data_list.replace(list_index, str);
             }
         }
-        QFile writeFile("../sdr_config.conf");
+        QFile writeFile(workPlace_path_+"/sdr_config.conf");
         if(!writeFile.open(QIODevice::WriteOnly|QIODevice::Text))
             ui->statusbar->showMessage("sdr_config.conf not found, already created",2000);
         else{
@@ -217,8 +225,13 @@ void sdr_windows::fileConfig(QStringList data_list, bool read_or_write) {
             writeFile.close();
             ui->statusbar->showMessage("File config completed!",2000);
         }
-        //todo: terminal path need to be changed
-        system("gnss-sdr --config_file=../sdr_config.conf");
+        //ask if the user want to run gnss-sdr
+        QMessageBox::StandardButton result = QMessageBox::question(this,"GNSS-SDR","Do you want to run GNSS-SDR with sdr_config.conf?",
+                              QMessageBox::Yes|QMessageBox::No,QMessageBox::No);
+        if (result==QMessageBox::Yes){
+            QString command=QString("cd %1;gnss-sdr --config_file=sdr_config.conf").arg(workPlace_path_);
+            system(command.toStdString().c_str());
+        }
     }
 }
 
@@ -245,7 +258,7 @@ void sdr_windows::hackrfConfig(QStringList data_list, bool read_or_write) {
         else
             hackRf_.setAgcEnabled(false);
         hackRf_.HackrfGetConfig(data_list);
-        QFile writeFile("../sdr_config.conf");
+        QFile writeFile(workPlace_path_+"/sdr_config.conf");
         if (!writeFile.open(QIODevice::WriteOnly | QIODevice::Text))
             ui->statusbar->showMessage("sdr_config.conf not found, already created",2000);
         else {

@@ -10,6 +10,7 @@
 #include <qfile.h>
 #include <qfiledialog.h>
 #include <qbuttongroup.h>
+#include <qprocess.h>
 #include "../HackRF/HackRF.h"
 
 QT_BEGIN_NAMESPACE
@@ -36,6 +37,7 @@ public slots:
 private:
     Ui::sdr_windows *ui;
 
+    QString workPlace_path_;
     QString config_filepath_;
     QString rawData_filepath_;
     QString config_file_lastpath_;

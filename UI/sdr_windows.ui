@@ -20,7 +20,7 @@
       <x>30</x>
       <y>130</y>
       <width>311</width>
-      <height>221</height>
+      <height>321</height>
      </rect>
     </property>
     <property name="title">
@@ -132,6 +132,33 @@
         </item>
         <item>
          <widget class="QToolButton" name="toolButton_conf">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="widget_12" native="true">
+       <layout class="QHBoxLayout" name="horizontalLayout_14">
+        <item>
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>Working Place</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_workPath">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton_workPath">
           <property name="text">
            <string>...</string>
           </property>
@@ -265,7 +292,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page">
       <widget class="QWidget" name="widget_6" native="true">
