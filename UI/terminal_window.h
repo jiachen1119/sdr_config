@@ -20,10 +20,14 @@ Q_OBJECT
 public:
     explicit terminal_window(QWidget *parent = nullptr);
     void cmd_start(QString workPlace_path);
+
     ~terminal_window() override;
 
+public slots:
+    void on_readoutput();
 private:
     Ui::terminal_window *terminal_ui;
+    QProcess *cmd;
 };
 
 

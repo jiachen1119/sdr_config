@@ -20,8 +20,10 @@ terminal_window::~terminal_window() {
 }
 
 void terminal_window::cmd_start(QString workPlace_path) {
-    QProcess *cmd=new QProcess(this);
+    cmd=new QProcess(this);
     cmd->setWorkingDirectory(workPlace_path);
+    connect(cmd , SIGNAL(readyReadStandardOutput()) , this , SLOT(on_readoutput()));
+
     QString program=QString("gnss-sdr");
     QStringList arguments=QStringList(" --config_file=sdr_config.conf");
     cmd->start("bash");
@@ -33,9 +35,14 @@ void terminal_window::cmd_start(QString workPlace_path) {
         cmd->close();
         return;
     }
-    QString strTemp =cmd->readAllStandardError();
-    terminal_ui->textEdit->setText(strTemp);
-    std::cout<<strTemp.toStdString();
+//    QString strTemp =cmd->readAllStandardOutput();
+//    terminal_ui->textEdit->setText(strTemp);
+//    std::cout<<strTemp.toStdString();
     //cmd->waitForFinished();
     cmd->close();
 }
+
+void terminal_window::on_readoutput() {
+    terminal_ui->textEdit->append(cmd->readAllStandardOutput().data());
+}
+
