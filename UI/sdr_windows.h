@@ -12,6 +12,7 @@
 #include <qbuttongroup.h>
 #include <qprocess.h>
 #include "../HackRF/HackRF.h"
+#include "terminal_window.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class sdr_windows; }

@@ -13,7 +13,7 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(sdr_config main.cpp UI/sdr_windows.cpp UI/sdr_windows.h UI/sdr_windows.ui HackRF/HackRF.cpp HackRF/HackRF.h myQString/myQString.cpp myQString/myQString.h)
+add_executable(sdr_config main.cpp UI/sdr_windows.cpp UI/sdr_windows.h UI/sdr_windows.ui HackRF/HackRF.cpp HackRF/HackRF.h myQString/myQString.cpp myQString/myQString.h UI/terminal_window.cpp UI/terminal_window.h UI/terminal_window.ui UI/terminal_window.cpp UI/terminal_window.h UI/terminal_window.ui UI/terminal_window.cpp UI/terminal_window.h UI/terminal_window.ui)
 target_link_libraries(sdr_config
         Qt5::Core
         Qt5::Gui

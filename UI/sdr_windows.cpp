@@ -229,8 +229,9 @@ void sdr_windows::fileConfig(QStringList data_list, bool read_or_write) {
         QMessageBox::StandardButton result = QMessageBox::question(this,"GNSS-SDR","Do you want to run GNSS-SDR with sdr_config.conf?",
                               QMessageBox::Yes|QMessageBox::No,QMessageBox::No);
         if (result==QMessageBox::Yes){
-            QString command=QString("cd %1;gnss-sdr --config_file=sdr_config.conf").arg(workPlace_path_);
-            system(command.toStdString().c_str());
+            terminal_window *term_win =new terminal_window;
+            term_win->show();
+            term_win->cmd_start(workPlace_path_);
         }
     }
 }
