@@ -7,6 +7,7 @@
 #include "terminal_window.h"
 #include "ui_terminal_window.h"
 #include <QDebug>
+#include <iostream>
 
 
 terminal_window::terminal_window(QWidget *parent) :
@@ -23,7 +24,8 @@ void terminal_window::cmd_start(QString workPlace_path) {
     cmd->setWorkingDirectory(workPlace_path);
     QString program=QString("gnss-sdr");
     QStringList arguments=QStringList(" --config_file=sdr_config.conf");
-    cmd->start(program,arguments);
+    cmd->start("bash");
+    cmd->write("gnss-sdr --config_file=sdr_config.conf\n");
     if(cmd->waitForReadyRead()) qDebug()<<"cmd success";
     else
     {
@@ -31,7 +33,9 @@ void terminal_window::cmd_start(QString workPlace_path) {
         cmd->close();
         return;
     }
-    QString strTemp = QString::fromLocal8Bit(cmd->readAllStandardOutput());
+    QString strTemp =cmd->readAllStandardError();
     terminal_ui->textEdit->setText(strTemp);
+    std::cout<<strTemp.toStdString();
+    //cmd->waitForFinished();
     cmd->close();
 }
