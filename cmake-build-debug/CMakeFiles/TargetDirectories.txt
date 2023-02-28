@@ -1,4 +1,4 @@
-/home/jiachen/sdr_config/cmake-build-debug/CMakeFiles/sdr_config.dir
-/home/jiachen/sdr_config/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/jiachen/sdr_config/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/jiachen/sdr_config/cmake-build-debug/CMakeFiles/sdr_config_autogen.dir
+/home/tang/CLionProjects/sdr_config/cmake-build-debug/CMakeFiles/sdr_config.dir
+/home/tang/CLionProjects/sdr_config/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/tang/CLionProjects/sdr_config/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/tang/CLionProjects/sdr_config/cmake-build-debug/CMakeFiles/sdr_config_autogen.dir

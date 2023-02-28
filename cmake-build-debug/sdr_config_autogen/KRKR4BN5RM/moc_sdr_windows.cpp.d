@@ -1,7 +1,7 @@
-/home/jiachen/sdr_config/cmake-build-debug/sdr_config_autogen/KRKR4BN5RM/moc_sdr_windows.cpp: /home/jiachen/sdr_config/UI/sdr_windows.h \
-  /home/jiachen/sdr_config/cmake-build-debug/sdr_config_autogen/moc_predefs.h \
-  /home/jiachen/sdr_config/HackRF/HackRF.h \
-  /home/jiachen/sdr_config/UI/terminal_window.h \
+/home/tang/CLionProjects/sdr_config/cmake-build-debug/sdr_config_autogen/KRKR4BN5RM/moc_sdr_windows.cpp: /home/tang/CLionProjects/sdr_config/UI/sdr_windows.h \
+  /home/tang/CLionProjects/sdr_config/cmake-build-debug/sdr_config_autogen/moc_predefs.h \
+  /home/tang/CLionProjects/sdr_config/HackRF/HackRF.h \
+  /home/tang/CLionProjects/sdr_config/UI/terminal_window.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
   /usr/include/assert.h \
