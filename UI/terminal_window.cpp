@@ -32,6 +32,7 @@ void terminal_window::cmd_start(QString workPlace_path) {
     QString program=QString("gnss-sdr");
     QStringList arguments=QStringList(" --config_file=sdr_config.conf");
     cmd->start("bash");
+    std::cout<<"\\033[01;字背景颜色;字体颜色m字符串\\033[0m"<<std::endl;
     cmd->write("gnss-sdr --config_file=sdr_config.conf\n");
     if(cmd->waitForReadyRead()) qDebug()<<"cmd success";
     else
