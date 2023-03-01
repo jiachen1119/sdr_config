@@ -23,11 +23,13 @@ public:
 
     ~terminal_window() override;
 
-public slots:
-    void on_readoutput();
 private:
     Ui::terminal_window *terminal_ui;
     QProcess *cmd;
+public slots:
+    void on_readoutput();
+signals:
+    void end_monitor();
 };
 
 

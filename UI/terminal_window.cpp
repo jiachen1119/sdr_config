@@ -8,6 +8,8 @@
 #include "ui_terminal_window.h"
 #include <QDebug>
 #include <iostream>
+#include "gnss_synchro_udp_source.h"
+#include <thread>
 
 
 terminal_window::terminal_window(QWidget *parent) :
@@ -27,12 +29,11 @@ void terminal_window::cmd_start(QString workPlace_path) {
         cmd->write("q");
         cmd->close();
         cmd->waitForFinished();
+        emit end_monitor();
     });
-
     QString program=QString("gnss-sdr");
     QStringList arguments=QStringList(" --config_file=sdr_config.conf");
     cmd->start("bash");
-    std::cout<<"\\033[01;字背景颜色;字体颜色m字符串\\033[0m"<<std::endl;
     cmd->write("gnss-sdr --config_file=sdr_config.conf\n");
     if(cmd->waitForReadyRead()) qDebug()<<"cmd success";
     else
@@ -48,6 +49,6 @@ void terminal_window::cmd_start(QString workPlace_path) {
 void terminal_window::on_readoutput() {
     QString temp_output=cmd->readAllStandardOutput().data();
     terminal_ui->textEdit->append(temp_output);
-    std::cout<<temp_output.toStdString();
 }
+
 

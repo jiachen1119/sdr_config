@@ -12,6 +12,8 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
+find_package(Threads)
+
 AUX_SOURCE_DIRECTORY(.          SRC_LIST)
 AUX_SOURCE_DIRECTORY(UI         SRC_LIST)
 AUX_SOURCE_DIRECTORY(HackRF     SRC_LIST)
@@ -25,5 +27,11 @@ target_link_libraries(sdr_config
         Qt5::Gui
         Qt5::Widgets
         monitoring_lib
+        ${CMAKE_THREAD_LIBS_INIT}
+        )
+target_include_directories(sdr_config
+        PUBLIC
+        ${PROJECT_SOURCE_DIR}/Monitor
+        ${CMAKE_THREAD_LIBS_INIT}
         )
 

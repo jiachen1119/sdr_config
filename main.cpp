@@ -3,6 +3,7 @@
 #include "UI/sdr_windows.h"
 #include <QFile>
 #include <iostream>
+#include "monitor_Qthread.h"
 
 int main(int argc, char *argv[]) {
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -20,6 +21,8 @@ int main(int argc, char *argv[]) {
         std::cout<<"qss reading success!"<<std::endl;
     } else
     {std::cerr<<"qss reading failed, use the default style sheet"<<std::endl;}
+
+    qDebug()<<monitor_Qthread::currentThreadId();
     uiw.show();
     return QApplication::exec();
 }

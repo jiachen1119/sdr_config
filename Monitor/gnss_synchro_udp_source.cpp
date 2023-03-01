@@ -65,3 +65,26 @@ bool Gnss_Synchro_Udp_Source::print_table()
 
     return true;
 }
+
+bool Gnss_Synchro_Udp_Source::get_data() {
+    if (read_gnss_synchro(stocks))
+    {
+        populate_channels(stocks);
+//        printw("%3s%6s%14s%17s\n", "CH", "PRN", "CN0 [dB-Hz]", "Doppler [Hz]");
+
+        // Print table contents.
+        for (auto const& ch : channels)
+        {
+            int channel_id = ch.first;      // Key
+            gnss_sdr::GnssSynchro data = ch.second;  // Value
+            std::cout<<data.prn()<<std::endl;
+//            printw("%3d%6d%14f\n", channel_id, data.prn(), data.cn0_db_hz());
+
+        }
+    }
+    else
+    {
+        return false;
+    }
+    return true;
+}

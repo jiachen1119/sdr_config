@@ -13,6 +13,7 @@
 #include <qprocess.h>
 #include "../HackRF/HackRF.h"
 #include "terminal_window.h"
+#include "monitor_Qthread.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class sdr_windows; }
@@ -32,6 +33,7 @@ public:
     void hackrfConfig(QStringList data_list,bool read_or_write);
     ~sdr_windows() override;
 
+
 public slots:
     void btnToggled(int btn, bool checked);
 
@@ -50,6 +52,8 @@ private:
     int btnGroup_flag_=0;
     QString model_config_file_="../file.conf";
     HackRF hackRf_;
+    monitor_Qthread monitorQthread;
+    terminal_window *term_win;
 
 };
 

@@ -71,7 +71,14 @@
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake",
-		"/snap/clion/222/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeParseArguments.cmake"
+		"/snap/clion/222/bin/cmake/linux/x64/share/cmake-3.24/Modules/CMakeParseArguments.cmake",
+		"/snap/clion/222/bin/cmake/linux/x64/share/cmake-3.24/Modules/FindThreads.cmake",
+		"/snap/clion/222/bin/cmake/linux/x64/share/cmake-3.24/Modules/CheckLibraryExists.cmake",
+		"/snap/clion/222/bin/cmake/linux/x64/share/cmake-3.24/Modules/CheckIncludeFile.cmake",
+		"/snap/clion/222/bin/cmake/linux/x64/share/cmake-3.24/Modules/CheckCSourceCompiles.cmake",
+		"/snap/clion/222/bin/cmake/linux/x64/share/cmake-3.24/Modules/Internal/CheckSourceCompiles.cmake",
+		"/snap/clion/222/bin/cmake/linux/x64/share/cmake-3.24/Modules/FindPackageHandleStandardArgs.cmake",
+		"/snap/clion/222/bin/cmake/linux/x64/share/cmake-3.24/Modules/FindPackageMessage.cmake"
 	],
 	"CMAKE_SOURCE_DIR" : "/home/tang/CLionProjects/sdr_config",
 	"DEP_FILE" : "/home/tang/CLionProjects/sdr_config/cmake-build-debug/sdr_config_autogen/deps",
@@ -88,6 +95,12 @@
 			"/home/tang/CLionProjects/sdr_config/Monitor/gnss_synchro_udp_source.h",
 			"MU",
 			"BOSZESRFLL/moc_gnss_synchro_udp_source.cpp",
+			null
+		],
+		[
+			"/home/tang/CLionProjects/sdr_config/Monitor/monitor_Qthread.h",
+			"MU",
+			"BOSZESRFLL/moc_monitor_Qthread.cpp",
 			null
 		],
 		[
@@ -129,6 +142,7 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+		"/home/tang/CLionProjects/sdr_config/Monitor",
 		"/home/tang/CLionProjects/sdr_config/cmake-build-debug/Monitor",
 		"/usr/include/x86_64-linux-gnu/qt5",
 		"/usr/include/x86_64-linux-gnu/qt5/QtCore",
@@ -170,6 +184,11 @@
 		[ "/home/tang/CLionProjects/sdr_config/HackRF/HackRF.cpp", "MU", null ],
 		[
 			"/home/tang/CLionProjects/sdr_config/Monitor/gnss_synchro_udp_source.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/tang/CLionProjects/sdr_config/Monitor/monitor_Qthread.cpp",
 			"MU",
 			null
 		],

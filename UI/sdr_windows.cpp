@@ -85,15 +85,22 @@ sdr_windows::sdr_windows(QWidget *parent) :
     connect(ui->pushButton_3,&QPushButton::clicked, this,[&](){
             ui->setupUi(this);
     });
+    connect(term_win,&terminal_window::end_monitor,&monitorQthread,&monitor_Qthread::change_endSign_status);
 }
 
 sdr_windows::~sdr_windows() {
+    qDebug() << "start destroy widget";
+    monitorQthread.quit();
+    if (monitorQthread.isRunning())
+        monitorQthread.wait();
     delete ui;
+    qDebug() << "end destroy widget";
 }
 
 void sdr_windows::init() {
     //todo: make the special edit line only written numbers
     ui->setupUi(this);
+    term_win =new terminal_window;
     QLabel* statusLabel=new QLabel
             ("Welcome to Config Creator for GNSS-SDR! (Written by Kepeng Luan from SEU)");
     ui->statusbar->addWidget(statusLabel);
@@ -109,7 +116,8 @@ void sdr_windows::init() {
     //basic widget setting
     data_type_=ui->comboBox->currentText();
     config_filepath_=ui->lineEdit_2->text();
-    workPlace_path_=QDir::currentPath();
+//    workPlace_path_=QDir::currentPath();
+    workPlace_path_="/home/tang/config_test";
     ui->lineEdit_workPath->setText(workPlace_path_);
     ui->checkBox_bias->setCheckState(Qt::Checked);
 }
@@ -229,7 +237,9 @@ void sdr_windows::fileConfig(QStringList data_list, bool read_or_write) {
         QMessageBox::StandardButton result = QMessageBox::question(this,"GNSS-SDR","Do you want to run GNSS-SDR with sdr_config.conf?",
                               QMessageBox::Yes|QMessageBox::No,QMessageBox::No);
         if (result==QMessageBox::Yes){
-            terminal_window *term_win =new terminal_window;
+            if(!monitorQthread.isRunning())
+                monitorQthread.start();
+            term_win =new terminal_window;
             term_win->show();
             term_win->cmd_start(workPlace_path_);
         }

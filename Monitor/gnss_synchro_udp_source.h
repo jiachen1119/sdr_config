@@ -9,6 +9,7 @@
 #include <boost/asio.hpp>
 #include "gnss_synchro.pb.h"  // This file is created automatically
 // by the Protocol Buffers compiler
+#include <qstring.h>
 
 class Gnss_Synchro_Udp_Source
 {
@@ -17,6 +18,7 @@ public:
     bool read_gnss_synchro(gnss_sdr::Observables& stocks);
     void populate_channels(gnss_sdr::Observables& stocks);
     bool print_table();
+    bool get_data();
 
 private:
     boost::asio::io_service io_service;

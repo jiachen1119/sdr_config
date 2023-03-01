@@ -11,8 +11,7 @@ endif()
 
 protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ${CMAKE_CURRENT_SOURCE_DIR}/gnss_synchro.proto)
 
-
-add_library(monitoring_lib ${CMAKE_CURRENT_SOURCE_DIR}/gnss_synchro_udp_source.cpp ${PROTO_SRCS})
+add_library(monitoring_lib ${CMAKE_CURRENT_SOURCE_DIR}/gnss_synchro_udp_source.cpp ${PROTO_SRCS} monitor_Qthread.cpp)
 
 target_link_libraries(monitoring_lib
     PUBLIC
@@ -20,7 +19,8 @@ target_link_libraries(monitoring_lib
         Boost::system
         ${CURSES_LIBRARIES}
         protobuf::libprotobuf
-        pthread
+        Qt5::Core
+
 )
 
 target_include_directories(monitoring_lib
