@@ -29,7 +29,10 @@ void terminal_window::cmd_start(QString workPlace_path) {
         cmd->write("q");
         cmd->close();
         cmd->waitForFinished();
+    });
+    connect(terminal_ui->pushButton_2,&QPushButton::clicked, this, [&](){
         emit end_monitor();
+        std::cout<<"clicked monitor button"<<std::endl;
     });
     QString program=QString("gnss-sdr");
     QStringList arguments=QStringList(" --config_file=sdr_config.conf");

@@ -239,7 +239,6 @@ void sdr_windows::fileConfig(QStringList data_list, bool read_or_write) {
         if (result==QMessageBox::Yes){
             if(!monitorQthread.isRunning())
                 monitorQthread.start();
-            term_win =new terminal_window;
             term_win->show();
             term_win->cmd_start(workPlace_path_);
         }

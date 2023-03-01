@@ -26,6 +26,7 @@ public:
     QWidget *widget;
     QTextEdit *textEdit;
     QPushButton *pushButton;
+    QPushButton *pushButton_2;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *terminal_window)
@@ -44,6 +45,9 @@ public:
         pushButton = new QPushButton(widget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(400, 300, 89, 25));
+        pushButton_2 = new QPushButton(widget);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setGeometry(QRect(280, 300, 89, 25));
         terminal_window->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(terminal_window);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -58,6 +62,7 @@ public:
     {
         terminal_window->setWindowTitle(QCoreApplication::translate("terminal_window", "terminal_window", nullptr));
         pushButton->setText(QCoreApplication::translate("terminal_window", "Cancel", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("terminal_window", "Monitor", nullptr));
     } // retranslateUi
 
 };
