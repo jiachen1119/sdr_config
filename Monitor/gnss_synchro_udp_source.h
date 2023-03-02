@@ -18,7 +18,7 @@ public:
     bool read_gnss_synchro(gnss_sdr::Observables& stocks);
     void populate_channels(gnss_sdr::Observables& stocks);
     bool print_table();
-    bool get_data();
+    QMap<int,double> get_data();
 
 private:
     boost::asio::io_service io_service;

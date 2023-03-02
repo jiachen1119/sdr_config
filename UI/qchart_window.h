@@ -6,6 +6,8 @@
 #define SDR_CONFIG_QCHART_WINDOW_H
 
 #include <QMainWindow>
+#include "PlotBaseWidget.h"
+#include <map>
 
 
 QT_BEGIN_NAMESPACE
@@ -22,6 +24,10 @@ public:
 
 private:
     Ui::Qchart_window *qchart_ui;
+    PlotBaseWidget *m_dock;
+
+public slots:
+    void receive_data(QMap<int,double> data_map);
 };
 
 

@@ -14,6 +14,7 @@
 #include "../HackRF/HackRF.h"
 #include "terminal_window.h"
 #include "monitor_Qthread.h"
+#include "qchart_window.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class sdr_windows; }
@@ -54,6 +55,7 @@ private:
     HackRF hackRf_;
     monitor_Qthread monitorQthread;
     terminal_window *term_win;
+    Qchart_window *chart_win;
 
 };
 

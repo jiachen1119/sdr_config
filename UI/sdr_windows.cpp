@@ -86,6 +86,8 @@ sdr_windows::sdr_windows(QWidget *parent) :
             ui->setupUi(this);
     });
     connect(term_win,&terminal_window::end_monitor,&monitorQthread,&monitor_Qthread::change_endSign_status);
+    qRegisterMetaType<QMap<int,double>>("myQMap");
+    connect(&monitorQthread,&monitor_Qthread::send_map,chart_win,&Qchart_window::receive_data);
 }
 
 sdr_windows::~sdr_windows() {
@@ -100,6 +102,7 @@ sdr_windows::~sdr_windows() {
 void sdr_windows::init() {
     //todo: make the special edit line only written numbers
     ui->setupUi(this);
+    chart_win=new Qchart_window;
     term_win =new terminal_window;
     QLabel* statusLabel=new QLabel
             ("Welcome to Config Creator for GNSS-SDR! (Written by Kepeng Luan from SEU)");
@@ -241,6 +244,7 @@ void sdr_windows::fileConfig(QStringList data_list, bool read_or_write) {
                 monitorQthread.start();
             term_win->show();
             term_win->cmd_start(workPlace_path_);
+            chart_win->show();
         }
     }
 }

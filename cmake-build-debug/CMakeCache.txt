@@ -293,7 +293,7 @@ boost_system_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_system-1.74.0
 monitoring_lib_LIB_DEPENDS:STATIC=general;Boost::system;general;/usr/lib/x86_64-linux-gnu/libncurses.so;general;/usr/lib/x86_64-linux-gnu/libform.so;general;protobuf::libprotobuf;general;Qt5::Core;
 
 //Dependencies for the target
-myQchart_lib_LIB_DEPENDS:STATIC=general;Qt5::PrintSupport;general;Qt5::Widgets;
+myQchart_lib_LIB_DEPENDS:STATIC=general;Qt5::Core;general;Qt5::PrintSupport;general;Qt5::Widgets;
 
 //Path to a library.
 pkgcfg_lib_NCURSES_ncurses:FILEPATH=/usr/lib/x86_64-linux-gnu/libncurses.so

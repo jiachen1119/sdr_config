@@ -2,6 +2,8 @@
 #include "gnss_synchro.pb.h"
 #include <sstream>
 #include <ncurses.h>
+#include <qmap.h>
+#include <qdebug.h>
 
 Gnss_Synchro_Udp_Source::Gnss_Synchro_Udp_Source(const unsigned short port) :
         socket{io_service},
@@ -66,7 +68,8 @@ bool Gnss_Synchro_Udp_Source::print_table()
     return true;
 }
 
-bool Gnss_Synchro_Udp_Source::get_data() {
+QMap<int,double> Gnss_Synchro_Udp_Source::get_data() {
+    QMap<int,double> temp_map;
     if (read_gnss_synchro(stocks))
     {
         populate_channels(stocks);
@@ -75,12 +78,13 @@ bool Gnss_Synchro_Udp_Source::get_data() {
         {
             int channel_id = ch.first;      // Key
             gnss_sdr::GnssSynchro data = ch.second;  // Value
-            std::cout<<data.prn()<<std::endl;
+            temp_map[channel_id]=data.cn0_db_hz();
         }
     }
     else
     {
-        return false;
+        qDebug()<<"monitor null!";
+        return temp_map;
     }
-    return true;
+    return temp_map;
 }
