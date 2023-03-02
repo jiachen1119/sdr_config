@@ -120,6 +120,12 @@
 			"MU",
 			"75H7WQBFIY/moc_myQString.cpp",
 			null
+		],
+		[
+			"/home/tang/CLionProjects/sdr_config/myQchart/myQchart.h",
+			"MU",
+			"IYLC65GBVU/moc_myQchart.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -201,6 +207,11 @@
 		[ "/home/tang/CLionProjects/sdr_config/main.cpp", "MU", null ],
 		[
 			"/home/tang/CLionProjects/sdr_config/myQString/myQString.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/tang/CLionProjects/sdr_config/myQchart/myQchart.cpp",
 			"MU",
 			null
 		]

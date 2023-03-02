@@ -19,6 +19,7 @@ AUX_SOURCE_DIRECTORY(UI         SRC_LIST)
 AUX_SOURCE_DIRECTORY(HackRF     SRC_LIST)
 AUX_SOURCE_DIRECTORY(myQString  SRC_LIST)
 AUX_SOURCE_DIRECTORY(Monitor    SRC_LIST)
+AUX_SOURCE_DIRECTORY(myQchart    SRC_LIST)
 
 add_executable(sdr_config  ${SRC_LIST})
 add_subdirectory(Monitor)
