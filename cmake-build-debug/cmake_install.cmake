@@ -45,6 +45,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/tang/CLionProjects/sdr_config/cmake-build-debug/Monitor/cmake_install.cmake")
+  include("/home/tang/CLionProjects/sdr_config/cmake-build-debug/myQchart/cmake_install.cmake")
 
 endif()
 

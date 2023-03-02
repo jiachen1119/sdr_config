@@ -104,6 +104,12 @@
 			null
 		],
 		[
+			"/home/tang/CLionProjects/sdr_config/UI/qchart_window.h",
+			"MU",
+			"KRKR4BN5RM/moc_qchart_window.cpp",
+			null
+		],
+		[
 			"/home/tang/CLionProjects/sdr_config/UI/sdr_windows.h",
 			"MU",
 			"KRKR4BN5RM/moc_sdr_windows.cpp",
@@ -126,6 +132,12 @@
 			"MU",
 			"IYLC65GBVU/moc_myQchart.cpp",
 			null
+		],
+		[
+			"/home/tang/CLionProjects/sdr_config/myQchart/qcustomplot.h",
+			"MU",
+			"IYLC65GBVU/moc_qcustomplot.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -137,6 +149,7 @@
 		"BOOST_SYSTEM_DYN_LINK",
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
+		"QT_PRINTSUPPORT_LIB",
 		"QT_WIDGETS_LIB"
 	],
 	"MOC_DEPEND_FILTERS" : 
@@ -149,12 +162,16 @@
 	"MOC_INCLUDES" : 
 	[
 		"/home/tang/CLionProjects/sdr_config/Monitor",
+		"/home/tang/CLionProjects/sdr_config/myQchart",
+		"/home/tang/CLionProjects/sdr_config/UI",
 		"/home/tang/CLionProjects/sdr_config/cmake-build-debug/Monitor",
+		"/home/tang/CLionProjects/sdr_config/cmake-build-debug/myQchart",
 		"/usr/include/x86_64-linux-gnu/qt5",
 		"/usr/include/x86_64-linux-gnu/qt5/QtCore",
 		"/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++",
 		"/usr/include/x86_64-linux-gnu/qt5/QtGui",
 		"/usr/include/x86_64-linux-gnu/qt5/QtWidgets",
+		"/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport",
 		"/usr/include",
 		"/usr/include/c++/11",
 		"/usr/include/x86_64-linux-gnu/c++/11",
@@ -198,6 +215,11 @@
 			"MU",
 			null
 		],
+		[
+			"/home/tang/CLionProjects/sdr_config/UI/qchart_window.cpp",
+			"MU",
+			null
+		],
 		[ "/home/tang/CLionProjects/sdr_config/UI/sdr_windows.cpp", "MU", null ],
 		[
 			"/home/tang/CLionProjects/sdr_config/UI/terminal_window.cpp",
@@ -212,6 +234,11 @@
 		],
 		[
 			"/home/tang/CLionProjects/sdr_config/myQchart/myQchart.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/tang/CLionProjects/sdr_config/myQchart/qcustomplot.cpp",
 			"MU",
 			null
 		]

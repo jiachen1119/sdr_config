@@ -8,3 +8,8 @@
 /home/tang/CLionProjects/sdr_config/cmake-build-debug/Monitor/CMakeFiles/rebuild_cache.dir
 /home/tang/CLionProjects/sdr_config/cmake-build-debug/Monitor/CMakeFiles/monitoring_lib_autogen_timestamp_deps.dir
 /home/tang/CLionProjects/sdr_config/cmake-build-debug/Monitor/CMakeFiles/monitoring_lib_autogen.dir
+/home/tang/CLionProjects/sdr_config/cmake-build-debug/myQchart/CMakeFiles/myQchart_lib.dir
+/home/tang/CLionProjects/sdr_config/cmake-build-debug/myQchart/CMakeFiles/edit_cache.dir
+/home/tang/CLionProjects/sdr_config/cmake-build-debug/myQchart/CMakeFiles/rebuild_cache.dir
+/home/tang/CLionProjects/sdr_config/cmake-build-debug/myQchart/CMakeFiles/myQchart_lib_autogen_timestamp_deps.dir
+/home/tang/CLionProjects/sdr_config/cmake-build-debug/myQchart/CMakeFiles/myQchart_lib_autogen.dir
