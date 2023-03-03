@@ -57,6 +57,7 @@ void PlotBaseWidget::CreateGraph(QMap<int,StLineInfo> mapLineInfo)
     m_plot->legend->setVisible(true);
     //QColor bc = m_plot->legend->brush().color();
     m_plot->legend->setBrush(QBrush(QColor(255,255,255,0)));
+    //图例内容行间距
     m_plot->legend->setRowSpacing(-3);
     // 创建图层及游标
     QMap<int,StLineInfo>::Iterator it = mapLineInfo.begin();
@@ -128,7 +129,7 @@ void PlotBaseWidget::AddData(double key,QMap<int,double> mapData)
     }
 
     // make key axis range scroll with the data
-    m_plot->xAxis->setRange(key, m_nXlength, Qt::AlignRight); //50是X轴的长度
+//    m_plot->xAxis->setRange(key, m_nXlength, Qt::AlignRight); //50是X轴的长度
     m_plot->replot();
 }
 // 设置游标标签的显示和隐藏

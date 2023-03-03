@@ -22,9 +22,9 @@ Qchart_window::Qchart_window(QWidget *parent) :
 
     QMap<int,StLineInfo> LineInfo;
     StLineInfo st1;
-    st1.name = "test"+QString::number(1);
+    st1.name = "CNo of channel 1";
     LineInfo.insert(1,st1);
-    st1.name = "test"+QString::number(2);
+    st1.name = "CNo of channel 1";
     LineInfo.insert(2,st1);
 
     m_dock->CreateGraph(LineInfo);
