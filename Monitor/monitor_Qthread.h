@@ -8,6 +8,7 @@
 #include "gnss_synchro_udp_source.h"
 #include <iostream>
 #include <qmap.h>
+#include <QElapsedTimer>
 
 class monitor_Qthread :public QThread{
 Q_OBJECT
@@ -16,6 +17,7 @@ public:
     void run() override;
 private:
     bool end_sign= false;
+    QMap<int,double> receive_map;
 public slots:
     void change_endSign_status();
 signals:

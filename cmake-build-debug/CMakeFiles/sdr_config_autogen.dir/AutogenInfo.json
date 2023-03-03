@@ -134,12 +134,6 @@
 			null
 		],
 		[
-			"/home/tang/CLionProjects/sdr_config/myQchart/chart_Qthread.h",
-			"MU",
-			"IYLC65GBVU/moc_chart_Qthread.cpp",
-			null
-		],
-		[
 			"/home/tang/CLionProjects/sdr_config/myQchart/myQchart.h",
 			"MU",
 			"IYLC65GBVU/moc_myQchart.cpp",
@@ -246,11 +240,6 @@
 		],
 		[
 			"/home/tang/CLionProjects/sdr_config/myQchart/PlotBaseWidget.cpp",
-			"MU",
-			null
-		],
-		[
-			"/home/tang/CLionProjects/sdr_config/myQchart/chart_Qthread.cpp",
 			"MU",
 			null
 		],

@@ -7,11 +7,14 @@
 void monitor_Qthread::run() {
     std::cout<<"monitor thread is running"<<std::endl;
     Gnss_Synchro_Udp_Source udpSource(1234);
-    QMap<int,double> receive_map;
+    QElapsedTimer timer;
+    timer.start();
     while(!end_sign){
         receive_map=udpSource.get_data();
         std::cout<<receive_map[0]<<std::endl;
-        emit send_map(receive_map);
+        if(timer.restart()<1000){
+            emit send_map(receive_map);
+        }
     }
     std::cout<<"monitor end"<<std::endl;
     exec();
