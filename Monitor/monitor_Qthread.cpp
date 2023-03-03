@@ -6,18 +6,20 @@
 
 void monitor_Qthread::run() {
     std::cout<<"monitor thread is running"<<std::endl;
-    Gnss_Synchro_Udp_Source udpSource(1234);
+    Gnss_Synchro_Udp_Source udpSource(4040);
     QElapsedTimer timer;
     timer.start();
     while(!end_sign){
-        receive_map=udpSource.get_data();
-        std::cout<<receive_map[0]<<std::endl;
-        if(timer.restart()<1000){
+        if(timer.hasExpired(1000)){
+            timer.start();
+            receive_map=udpSource.get_data();
+            for (auto it =receive_map.begin();it!=receive_map.end();it++) {
+                std::cout<<it.value()<<std::endl;
+            }
             emit send_map(receive_map);
         }
     }
     std::cout<<"monitor end"<<std::endl;
-    exec();
 }
 
 void monitor_Qthread::change_endSign_status() {

@@ -29,9 +29,9 @@ Qchart_window::Qchart_window(QWidget *parent) :
 
     m_dock->CreateGraph(LineInfo);
     m_dock->SetXrange(0,0,1000);
-    m_dock->SetXLength(100);
-    m_dock->SetYrange(1,-5,5);
-    m_dock->ShowTagLabels(false);
+    m_dock->SetXLength(1000);
+    m_dock->SetYrange(1,40,50);
+    m_dock->ShowTagLabels(true);
 }
 
 Qchart_window::~Qchart_window() {
@@ -42,9 +42,9 @@ void Qchart_window::receive_data(QMap<int,double> data_map) {
         // add data to lines
         static int key =0;
         key++;
-
+        std::cout<<"draw once"<<std::endl;
         QMap<int,double> mapData;
         mapData.insert(1,data_map.begin().value());
-        mapData.insert(2,data_map.end().value());
+        mapData.insert(2,42.8387);
         m_dock->AddData(key,mapData);
 }

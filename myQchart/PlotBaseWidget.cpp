@@ -13,27 +13,33 @@ PlotBaseWidget::PlotBaseWidget(QWidget *parent,int w,int h) :
     m_plot = new QCustomPlot(this);
     m_plot->setFixedSize(w,h);
 
+    //设置Tick画笔
+    QPen TickPen;
+    TickPen.setColor(Qt::black);
+    TickPen.setWidth(2);
+    QPen subTickPen;
+    subTickPen.setColor(Qt::black);
+    subTickPen.setWidth(1);
     //x坐标轴设置
     m_plot->xAxis->setLabel("TIME");         //设置坐标名字
     m_plot->xAxis->setLabelColor(Qt::black); //设置坐标颜色
     m_plot->xAxis->setLabelPadding(1);       //设置坐标轴名称文本距离坐标轴刻度线距离
-    //m_plot->xAxis->setRange(0,1000);         //设置X轴范围
-
-
+    m_plot->xAxis->setTickLabels(true);
+    m_plot->xAxis->setBasePen(TickPen);
     //设置Y轴
     /*说明：虽然通过setVisible()可以设置Y2轴的不可见，但是在绘制时游标标签需要重新进行设置
      *因为setVisible(false)后，Y2轴不绘制，Y2轴上的刻度线长度将无用，而将画笔设为Qt::NoPen，
      *则是使用透明画笔绘制Y2轴，其刻度线长度仍然占用空间，也就不会将游标标签的空间压缩，导致游标
      *标签显示不完整，这就需要在基础控件中修改游标标签的位置
      */
-    m_plot->yAxis2->setTickLabels(false);     //设置y轴刻度值不显示
-    m_plot->yAxis2->setBasePen(Qt::NoPen);    //设置y2轴的绘制画笔
-    m_plot->yAxis2->setTickPen(Qt::NoPen);    //设置y2轴的主刻度线绘制画笔
-    m_plot->yAxis2->setSubTickPen(Qt::NoPen); //设置y2轴的子刻度线绘制画笔
+    m_plot->yAxis2->setTickLabels(true);     //设置y轴刻度值显示
+
+    m_plot->yAxis2->setBasePen(TickPen);    //设置y2轴的绘制画笔
+    m_plot->yAxis2->setTickPen(TickPen);    //设置y2轴的主刻度线绘制画笔
+    m_plot->yAxis2->setSubTickPen(subTickPen); //设置y2轴的子刻度线绘制画笔
     connect(m_plot->yAxis2, SIGNAL(rangeChanged(QCPRange)), m_plot->yAxis, SLOT(setRange(QCPRange))); // left axis only mirrors inner right axis
     m_plot->yAxis2->setVisible(true);
     m_plot->axisRect()->axis(QCPAxis::atRight, 0)->setPadding(55); // add some padding to have space for tags
-    //m_plot->yAxis2->setRange(-2,2); //y轴的范围
 
 
     //鼠标移动事件
@@ -137,19 +143,7 @@ void PlotBaseWidget::ShowTagLabels(bool b)
     }
     m_plot->replot();
 }
-// 设置数值游标的显示和隐藏
-/*
-void PlotBaseWidget::ShowValueTracer(bool b)
-{
-    QMap<int,StLineInfoAll>::Iterator it = m_mapLineInfo.begin();  //曲线属性
-    for(; it != m_mapLineInfo.end(); it++)
-    {
-        StLineInfoAll st = it.value();
-        if(st.vtrac)
-            st.vtrac->setVisible(b);
-    }
-    m_plot->replot();
-}*/
+
 // 设置X轴范围
 void PlotBaseWidget::SetXrange(int id,double lower, double upper)
 {
@@ -182,7 +176,7 @@ void PlotBaseWidget::slotShowValueTracer(QMouseEvent *event)
         double y = 0;
         QSharedPointer<QCPGraphDataContainer> tmpContainer;
         tmpContainer = info.graph->data();
-        //使用二分法快速查找所在点数据！！！敲黑板，下边这段是重点
+        //使用二分法快速查找所在点数据
         int low = 0, high = tmpContainer->size();
         while(high > low)
         {
@@ -219,8 +213,6 @@ void PlotBaseWidget::slotShowValueTracer(QMouseEvent *event)
             info.vtrac->updateTracerPosition(x, y);
             info.vtrac->setText(QString::number(y, 'f', 2));
         }
-
-
     }
     m_plot->replot();
 
