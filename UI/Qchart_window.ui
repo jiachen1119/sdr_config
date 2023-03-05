@@ -6,29 +6,29 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>634</width>
-    <height>455</height>
+    <width>827</width>
+    <height>568</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Qchart_window</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QCustomPlot" name="widget" native="true">
+   <widget class="PlotBaseWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
       <x>30</x>
       <y>20</y>
-      <width>561</width>
-      <height>361</height>
+      <width>781</width>
+      <height>481</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>400</y>
+      <x>730</x>
+      <y>510</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -42,9 +42,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QCustomPlot</class>
+   <class>PlotBaseWidget</class>
    <extends>QWidget</extends>
-   <header>qcustomplot.h</header>
+   <header>PlotBaseWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

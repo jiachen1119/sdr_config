@@ -5,13 +5,16 @@
 #include "PlotBaseWidget.h"
 
 
-PlotBaseWidget::PlotBaseWidget(QWidget *parent,int width,int height) :
+PlotBaseWidget::PlotBaseWidget(QWidget *parent) :
         QWidget(parent)
 {
-    setFixedSize(width,height);
+    //setFixedSize(width,height);
     InitParam();
-    customPlot = new QCustomPlot(this);
-    customPlot->setFixedSize(width, height);
+    customPlot = new QCustomPlot(parent);
+    QScreen *screen = qApp->primaryScreen();
+    int screenWidth = screen->size().width();            //屏幕宽
+    int screenHeight = screen->size().height();
+    customPlot->setFixedSize(screenWidth/2,screenHeight/2);
 
     //设置Tick画笔
     QPen TickPen;
@@ -89,7 +92,7 @@ void PlotBaseWidget::CreateGraph(std::vector<StLineInfo> lineInfo)
         drawStruct.graph->setScatterStyle(
                 QCPScatterStyle(QCPScatterStyle::ssCircle,
                      QPen(Qpen_color, 1),
-                     QBrush(Qt::white), 7));
+                     QBrush(Qt::white), 1));
         customPlot->legend->item(i)->setTextColor(Qpen_color);  //设置图例中每条线的文本颜色
 
 

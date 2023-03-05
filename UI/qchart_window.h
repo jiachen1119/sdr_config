@@ -24,7 +24,6 @@ public:
 
 private:
     Ui::Qchart_window *qchart_ui;
-    PlotBaseWidget *m_dock;
 
 public slots:
     void receive_data(QMap<int,double> data_map);

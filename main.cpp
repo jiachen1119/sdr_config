@@ -21,8 +21,6 @@ int main(int argc, char *argv[]) {
         std::cout<<"qss reading success!"<<std::endl;
     } else
     {std::cerr<<"qss reading failed, use the default style sheet"<<std::endl;}
-
-    qDebug()<<monitor_Qthread::currentThreadId();
     uiw.show();
     return QApplication::exec();
 }

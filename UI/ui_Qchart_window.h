@@ -1,5 +1,5 @@
 /********************************************************************************
-** Form generated from reading UI file 'qchart_window.ui'
+** Form generated from reading UI file 'Qchart_window.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.3
 **
@@ -15,7 +15,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
-#include "../myQchart/qcustomplot.h"
+#include "PlotBaseWidget.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -23,7 +23,7 @@ class Ui_Qchart_window
 {
 public:
     QWidget *centralwidget;
-    QCustomPlot *widget;
+    PlotBaseWidget *widget;
     QPushButton *pushButton;
     QStatusBar *statusbar;
 
@@ -31,15 +31,15 @@ public:
     {
         if (Qchart_window->objectName().isEmpty())
             Qchart_window->setObjectName(QString::fromUtf8("Qchart_window"));
-        Qchart_window->resize(634, 455);
+        Qchart_window->resize(827, 568);
         centralwidget = new QWidget(Qchart_window);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        widget = new QCustomPlot(centralwidget);
+        widget = new PlotBaseWidget(centralwidget);
         widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(30, 20, 561, 361));
+        widget->setGeometry(QRect(30, 20, 781, 481));
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(500, 400, 89, 25));
+        pushButton->setGeometry(QRect(730, 510, 89, 25));
         Qchart_window->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(Qchart_window);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));

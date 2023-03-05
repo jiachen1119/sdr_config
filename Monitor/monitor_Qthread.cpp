@@ -10,12 +10,12 @@ void monitor_Qthread::run() {
     QElapsedTimer timer;
     timer.start();
     while(!end_sign){
-        if(timer.hasExpired(1000)){
+        if(timer.hasExpired(20)){
             timer.start();
             receive_map=udpSource.get_data();
-            for (auto it =receive_map.begin();it!=receive_map.end();it++) {
-                std::cout<<it.value()<<std::endl;
-            }
+//            for (auto it =receive_map.begin();it!=receive_map.end();it++) {
+//                std::cout<<it.value()<<std::endl;
+//            }
             emit send_map(receive_map);
         }
     }

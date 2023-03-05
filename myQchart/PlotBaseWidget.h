@@ -24,7 +24,7 @@ class PlotBaseWidget : public QWidget
 {
 Q_OBJECT
 public:
-    explicit PlotBaseWidget(QWidget *parent,int w = 400,int h = 300);
+    explicit PlotBaseWidget(QWidget *parent);
     void CreateGraph(std::vector<StLineInfo> mapLineInfo);
     void AddData(double key,QMap<int,double> mapData);
     void ShowTagLabels(bool b);
