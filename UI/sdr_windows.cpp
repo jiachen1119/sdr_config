@@ -85,7 +85,9 @@ sdr_windows::sdr_windows(QWidget *parent) :
     connect(ui->pushButton_3,&QPushButton::clicked, this,[&](){
             ui->setupUi(this);
     });
+    //只要按下monitor就停止
     connect(term_win,&terminal_window::end_monitor,&monitorQthread,&monitor_Qthread::change_endSign_status);
+    //接收到数据，触发 绘图
     qRegisterMetaType<QMap<int,double>>("myQMap");
     connect(&monitorQthread,&monitor_Qthread::send_map,chart_win,&Qchart_window::receive_data);
 }

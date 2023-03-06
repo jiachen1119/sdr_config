@@ -54,7 +54,7 @@ PlotBaseWidget::PlotBaseWidget(QWidget *parent) :
 // 设置曲线信息
 void PlotBaseWidget::CreateGraph(std::vector<StLineInfo> lineInfo)
 {
-    m_mapLineInfo.clear();
+    mapLineInfo.clear();
     //图例
     customPlot->legend->setVisible(true);
     customPlot->legend->setBrush(QBrush(QColor(255, 255, 255, 0)));
@@ -75,7 +75,7 @@ void PlotBaseWidget::CreateGraph(std::vector<StLineInfo> lineInfo)
         pen.setStyle(Qt::SolidLine);
         // 创建图层
         drawStruct.graph = customPlot->addGraph();
-        drawStruct.graph->setName(lineStruct.name);
+        drawStruct.graph->setName(lineStruct.lineName);
         drawStruct.graph->setPen(pen);
         drawStruct.graph->setLineStyle(QCPGraph::lsLine);
 
@@ -86,25 +86,22 @@ void PlotBaseWidget::CreateGraph(std::vector<StLineInfo> lineInfo)
                      QBrush(Qt::white), 1));
         customPlot->legend->item(i)->setTextColor(Qpen_color);  //设置图例中每条线的文本颜色
 
-        drawStruct.info.name = lineStruct.name;
+        drawStruct.info.lineName = lineStruct.lineName;
         drawStruct.info.c = Qpen_color;
 
-        m_mapLineInfo.insert(i, drawStruct);
+        mapLineInfo.insert(i, drawStruct);
     }
 }
 // 添加数据
 void PlotBaseWidget::AddData(double key,QMap<int,double> mapData)
 {
-    QMap<int, double>::Iterator it = mapData.begin();
-    for(; it != mapData.end(); it++)
+    //两次遍历 将新增的数据添加到对应的图层中
+    QMap<int, double>::Iterator it_inputData = mapData.begin();
+    for(; it_inputData != mapData.end(); it_inputData++)
     {
-        double vv = it.value();
-        QMap<int,StLineInfoAll>::Iterator ff = m_mapLineInfo.find(it.key());
-        if(ff != m_mapLineInfo.end())
-        {
-            StLineInfoAll line = ff.value();
-            line.graph->addData(key,vv);
-        }
+        QMap<int,StLineInfoAll>::Iterator it_graph = mapLineInfo.find(it_inputData.key());
+        if(it_graph != mapLineInfo.end())
+            it_graph.value().graph->addData(key,it_inputData.value());
     }
     customPlot->replot();
 }

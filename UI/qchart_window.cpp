@@ -20,8 +20,8 @@ Qchart_window::Qchart_window(QWidget *parent) :
 
     std::vector<StLineInfo> LineInfo;
     StLineInfo st1,st2,st3,st4;
-    st1.name = "CNo of channel 1";
-    st2.name = "CNo of channel 2";
+    st1.lineName = "CNo of channel 1";
+    st2.lineName = "CNo of channel 2";
     LineInfo.push_back(st1);
     LineInfo.push_back(st2);
     LineInfo.push_back(st3);

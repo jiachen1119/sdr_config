@@ -10,12 +10,12 @@
 //曲线属性
 struct StLineInfo
 {
-    QString name;   //曲线名称
+    QString lineName;   //曲线名称
     QColor c;       //曲线颜色
     int penWitdth=2;  //曲线粗细
 
     StLineInfo(){
-        name="default";
+        lineName="default";
         c = Qt::transparent;}
 };
 
@@ -43,7 +43,7 @@ private:
         StLineInfo info;                   //曲线信息
     };
 
-    QMap<int,StLineInfoAll> m_mapLineInfo;  //曲线属性
+    QMap<int,StLineInfoAll> mapLineInfo;  //曲线属性
     QList<QColor> listDefaultColor;           //默认颜色
 
 
