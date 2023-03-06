@@ -37,11 +37,6 @@ PlotBaseWidget::PlotBaseWidget(QWidget *parent) :
     customPlot->xAxis->setLabelPadding(1);       //设置坐标轴名称文本距离坐标轴刻度线距离
 
     //设置Y轴
-    /*说明：虽然通过setVisible()可以设置Y2轴的不可见，但是在绘制时游标标签需要重新进行设置
-     *因为setVisible(false)后，Y2轴不绘制，Y2轴上的刻度线长度将无用，而将画笔设为Qt::NoPen，
-     *则是使用透明画笔绘制Y2轴，其刻度线长度仍然占用空间，也就不会将游标标签的空间压缩，导致游标
-     *标签显示不完整，这就需要在基础控件中修改游标标签的位置
-     */
     QSharedPointer<QCPAxisTickerFixed> fixTicker(new QCPAxisTickerFixed);
     customPlot->yAxis->setTickLabels(true);     //设置y轴刻度值显示
     customPlot->yAxis->setTicker(fixTicker);
@@ -49,12 +44,8 @@ PlotBaseWidget::PlotBaseWidget(QWidget *parent) :
     customPlot->yAxis->setTickPen(TickPen);    //设置y轴的主刻度线绘制画笔
     customPlot->yAxis->setSubTickPen(subTickPen); //设置y轴的子刻度线绘制画笔
     customPlot->yAxis->setLabel("CNo");
-    connect(customPlot->yAxis2, SIGNAL(rangeChanged(QCPRange)), customPlot->yAxis, SLOT(setRange(QCPRange))); // left axis only mirrors inner right axis
     customPlot->axisRect()->axis(QCPAxis::atRight, 0)->setPadding(55); // add some padding to have space for tags
 
-
-    //鼠标移动事件
-    connect(customPlot, SIGNAL(mouseMove(QMouseEvent *)), this, SLOT(slotShowValueTracer(QMouseEvent *)));
     //设置曲线可拖拽、可缩放 //、可选择
     customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom ); //| QCP::iSelectPlottables
     //customPlot->axisRect()->setRangeZoom(Qt::Horizontal);  //设置水平缩放
@@ -70,7 +61,7 @@ void PlotBaseWidget::CreateGraph(std::vector<StLineInfo> lineInfo)
     customPlot->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignLeft | Qt::AlignTop);
     //图例内容行间距
 //    customPlot->legend->setRowSpacing(-3);
-    // 创建图层及游标
+    // 创建图层
     for(int i = 0; i< lineInfo.size();i++)
     {
         StLineInfo lineStruct = lineInfo.at(i);
@@ -95,17 +86,6 @@ void PlotBaseWidget::CreateGraph(std::vector<StLineInfo> lineInfo)
                      QBrush(Qt::white), 1));
         customPlot->legend->item(i)->setTextColor(Qpen_color);  //设置图例中每条线的文本颜色
 
-
-        // 创建数值游标
-        drawStruct.vtrac = new myQchart(customPlot, DataTracer);
-        drawStruct.vtrac->setArrowHead(QCPLineEnding::esSpikeArrow);
-        drawStruct.vtrac->setTracerStyle(QCPItemTracer::tsNone);
-        drawStruct.vtrac->setArrowPen(QPen(Qpen_color));
-//        drawStruct.vtrac->setTracerPen(QPen(Qpen_color));
-        drawStruct.vtrac->setLabelPen(Qt::NoPen);
-        drawStruct.vtrac->setTextColor(Qpen_color);
-
-
         drawStruct.info.name = lineStruct.name;
         drawStruct.info.c = Qpen_color;
 
@@ -119,27 +99,12 @@ void PlotBaseWidget::AddData(double key,QMap<int,double> mapData)
     for(; it != mapData.end(); it++)
     {
         double vv = it.value();
-
         QMap<int,StLineInfoAll>::Iterator ff = m_mapLineInfo.find(it.key());
         if(ff != m_mapLineInfo.end())
         {
             StLineInfoAll line = ff.value();
             line.graph->addData(key,vv);
-            //更新标签位置和内容
         }
-    }
-
-    // make key axis range scroll with the data
-//    customPlot->xAxis->setRange(key, m_nXlength, Qt::AlignRight); //50是X轴的长度
-    customPlot->replot();
-}
-// 设置游标标签的显示和隐藏
-void PlotBaseWidget::ShowTagLabels(bool b)
-{
-    QMap<int,StLineInfoAll>::Iterator it = m_mapLineInfo.begin();  //曲线属性
-    for(; it != m_mapLineInfo.end(); it++)
-    {
-        StLineInfoAll st = it.value();
     }
     customPlot->replot();
 }
@@ -160,81 +125,18 @@ void PlotBaseWidget::SetYrange(int id,double lower, double upper)
     else
         customPlot->yAxis2->setRange(lower, upper);
 }
-// 设置X轴窗口长度（动态曲线使用）
-void PlotBaseWidget::SetXLength(int w)
-{
-    m_nXlength = w;
-}
-//显示数值游标
-void PlotBaseWidget::slotShowValueTracer(QMouseEvent *event)
-{
-    double x = customPlot->xAxis->pixelToCoord(event->pos().x());
-    QMap<int,StLineInfoAll>::Iterator it = m_mapLineInfo.begin();
-    for(; it != m_mapLineInfo.end();it++)
-    {
-        StLineInfoAll info = it.value();
-        double y = 0;
-        QSharedPointer<QCPGraphDataContainer> tmpContainer;
-        tmpContainer = info.graph->data();
-        //使用二分法快速查找所在点数据
-        int low = 0, high = tmpContainer->size();
-        while(high > low)
-        {
-            int middle = (low + high) / 2;
-            if(x < tmpContainer->constBegin()->mainKey() ||
-               x > (tmpContainer->constEnd()-1)->mainKey())
-                break;
-
-            if(x == (tmpContainer->constBegin() + middle)->mainKey())
-            {
-                y = (tmpContainer->constBegin() + middle)->mainValue();
-                break;
-            }
-            if(x > (tmpContainer->constBegin() + middle)->mainKey())
-            {
-                low = middle;
-            }
-            else if(x < (tmpContainer->constBegin() + middle)->mainKey())
-            {
-                high = middle;
-            }
-            if(high - low <= 1)
-            {   //差值计算所在位置数据
-                y = (tmpContainer->constBegin()+low)->mainValue() + ( (x - (tmpContainer->constBegin() + low)->mainKey()) *
-                                                                      ((tmpContainer->constBegin()+high)->mainValue() - (tmpContainer->constBegin()+low)->mainValue()) ) /
-                                                                    ((tmpContainer->constBegin()+high)->mainKey() - (tmpContainer->constBegin()+low)->mainKey());
-                break;
-            }
-
-        }
-
-        if(info.vtrac)
-        {
-            info.vtrac->updateTracerPosition(x, y);
-            info.vtrac->setText(QString::number(y, 'f', 2));
-        }
-    }
-    customPlot->replot();
-
-}
-
-// 初始化参数
+// init
 void PlotBaseWidget::InitParam()
 {
-    m_nXlength = 50;
-    m_nYchanged = -1;
-
     //初始化默认颜色列表
-    {
-        listDefaultColor.push_back(QColor(250, 120, 0));
-        listDefaultColor.push_back(QColor(0, 180, 60));
-        listDefaultColor.push_back(Qt::green);
-        listDefaultColor.push_back(Qt::yellow);
-        listDefaultColor.push_back(Qt::black);
-        listDefaultColor.push_back(Qt::blue);
-        listDefaultColor.push_back(Qt::red);
-        listDefaultColor.push_back(Qt::darkCyan);
-    }
+    listDefaultColor.push_back(QColor(250, 120, 0));
+    listDefaultColor.push_back(QColor(0, 180, 60));
+    listDefaultColor.push_back(Qt::green);
+    listDefaultColor.push_back(Qt::black);
+    listDefaultColor.push_back(Qt::red);
+    listDefaultColor.push_back(Qt::darkCyan);
+    //start a new thread
+    plot_Qthread *plotQthread=new plot_Qthread();
 
 }
 // 获取可用颜色

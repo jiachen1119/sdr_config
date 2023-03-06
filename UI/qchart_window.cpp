@@ -29,9 +29,7 @@ Qchart_window::Qchart_window(QWidget *parent) :
 
     qchart_ui->widget->CreateGraph(LineInfo);
     qchart_ui->widget->SetXrange(0,0,1000);
-    qchart_ui->widget->SetXLength(10000);
-    qchart_ui->widget->SetYrange(1,40,46);
-    qchart_ui->widget->ShowTagLabels(true);
+    qchart_ui->widget->SetYrange(0,40,55);
 }
 
 Qchart_window::~Qchart_window() {

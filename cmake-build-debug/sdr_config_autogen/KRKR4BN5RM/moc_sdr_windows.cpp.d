@@ -7,7 +7,7 @@
   /home/tang/CLionProjects/sdr_config/UI/terminal_window.h \
   /home/tang/CLionProjects/sdr_config/cmake-build-debug/Monitor/gnss_synchro.pb.h \
   /home/tang/CLionProjects/sdr_config/myQchart/PlotBaseWidget.h \
-  /home/tang/CLionProjects/sdr_config/myQchart/myQchart.h \
+  /home/tang/CLionProjects/sdr_config/myQchart/plot_Qthread.h \
   /home/tang/CLionProjects/sdr_config/myQchart/qcustomplot.h \
   /usr/include/GL/gl.h \
   /usr/include/alloca.h \
