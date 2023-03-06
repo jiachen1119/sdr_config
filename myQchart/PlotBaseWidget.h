@@ -4,7 +4,6 @@
 #include <QWidget>
 #include "qcustomplot.h"
 #include <vector>
-#include "plot_Qthread.h"
 
 
 //曲线属性

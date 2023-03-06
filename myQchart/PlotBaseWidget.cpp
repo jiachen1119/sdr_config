@@ -132,8 +132,6 @@ void PlotBaseWidget::InitParam()
     listDefaultColor.push_back(Qt::black);
     listDefaultColor.push_back(Qt::red);
     listDefaultColor.push_back(Qt::darkCyan);
-    //start a new thread
-    plot_Qthread *plotQthread=new plot_Qthread();
 
 }
 // 获取可用颜色

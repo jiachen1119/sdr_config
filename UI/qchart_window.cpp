@@ -40,9 +40,5 @@ void Qchart_window::receive_data(QMap<int,double> data_map) {
         // add data to lines
      static int key =0;
      key++;
-     QMap<int,double> mapData;
-    for (auto it=data_map.begin();it!=data_map.end();it++) {
-        mapData.insert(it.key(),it.value());
-    }
-        qchart_ui->widget->AddData(key,mapData);
+        qchart_ui->widget->AddData(key,data_map);
 }

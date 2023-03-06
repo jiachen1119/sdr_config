@@ -1,5 +1,5 @@
 find_package(Qt5 COMPONENTS PrintSupport REQUIRED)
-add_library(myQchart_lib qcustomplot.cpp PlotBaseWidget.cpp PlotBaseWidget.h plot_Qthread.cpp plot_Qthread.h)
+add_library(myQchart_lib qcustomplot.cpp PlotBaseWidget.cpp PlotBaseWidget.h)
 target_link_libraries(myQchart_lib
         PUBLIC
         Qt5::Core
