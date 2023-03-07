@@ -41,6 +41,7 @@ void HackRF::HackrfGetConfig(QStringList &datalist) {
         QString keyWord=myStr.readKeyWordAll();
         if(keyWord.contains("SignalSource.sampling_frequency", Qt::CaseSensitive)){
             QString str = QString("%1=%2\n").arg(keyWord).arg(sampling_frequency_);
+            std::cout<<sampling_frequency_<<std::endl;
             datalist.replace(i, str);
         }
         if(keyWord.contains("SignalSource.gain", Qt::CaseSensitive)){

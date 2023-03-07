@@ -7,6 +7,7 @@
 
 #include <QString>
 #include <QStringList>
+#include <iostream>
 
 class HackRF {
 public:

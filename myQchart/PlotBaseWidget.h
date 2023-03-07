@@ -26,8 +26,6 @@ public:
     explicit PlotBaseWidget(QWidget *parent);
     void CreateGraph(std::vector<StLineInfo> mapLineInfo);
     void AddData(double key,QMap<int,double> mapData);
-    void SetXrange(int id,double lower, double upper);
-    void SetYrange(int id,double lower, double upper);
 
 private:
     void InitParam();                        //初始化参数

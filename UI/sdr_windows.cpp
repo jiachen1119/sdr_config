@@ -148,7 +148,8 @@ void sdr_windows::btnToggled(int btn, bool checked) {
             break;
         case 1:
             ui->stackedWidget->setCurrentWidget(ui->page_2);
-            model_config_file_="../hackrf_GPS_L1.conf";
+//            model_config_file_="../hackrf_GPS_L1.conf";
+            model_config_file_="../hackrf_hybrid.conf";
             ui->lineEdit_2->setText(model_config_file_);
             ui->comboBox->setCurrentIndex(7);
             ui->comboBox->setItemData(0,combobox_false,Qt::UserRole-1);
@@ -265,7 +266,7 @@ void sdr_windows::hackrfConfig(QStringList data_list, bool read_or_write) {
         ui->statusbar->showMessage("Hackrf part reading completed",2000);
     }
     else {
-        hackRf_.setSamplingFrequency(ui->lineEdit_2->text().toInt());
+        hackRf_.setSamplingFrequency(ui->lineEdit->text().toInt());
         hackRf_.setGain(ui->lineEdit_gain->text().toInt());
         hackRf_.setIfGain(ui->lineEdit_if->text().toInt());
         hackRf_.setRfGain(ui->lineEdit_rf->text().toInt());
@@ -283,6 +284,15 @@ void sdr_windows::hackrfConfig(QStringList data_list, bool read_or_write) {
             }
             writeFile.close();
             ui->statusbar->showMessage("hackrf config completed!",2000);
+        }
+        QMessageBox::StandardButton result = QMessageBox::question(this,"GNSS-SDR","Do you want to run GNSS-SDR with sdr_config.conf?",
+                                                                   QMessageBox::Yes|QMessageBox::No,QMessageBox::No);
+        if (result==QMessageBox::Yes) {
+            if (!monitorQthread.isRunning())
+                monitorQthread.start();
+            term_win->show();
+            term_win->cmd_start(workPlace_path_);
+            chart_win->show();
         }
     }
 }

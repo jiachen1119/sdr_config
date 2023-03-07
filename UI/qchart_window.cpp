@@ -28,8 +28,6 @@ Qchart_window::Qchart_window(QWidget *parent) :
     LineInfo.push_back(st4);
 
     qchart_ui->widget->CreateGraph(LineInfo);
-    qchart_ui->widget->SetXrange(0,0,1000);
-    qchart_ui->widget->SetYrange(0,40,55);
 }
 
 Qchart_window::~Qchart_window() {
@@ -40,5 +38,5 @@ void Qchart_window::receive_data(QMap<int,double> data_map) {
         // add data to lines
      static int key =0;
      key++;
-        qchart_ui->widget->AddData(key,data_map);
+     qchart_ui->widget->AddData(key,data_map);
 }

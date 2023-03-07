@@ -33,6 +33,11 @@ public:
     void fileConfig(QStringList data_list,bool read_or_write);
     void hackrfConfig(QStringList data_list,bool read_or_write);
     ~sdr_windows() override;
+    enum front_end{
+        file=0,
+        hackrf=1,
+        usrp=2
+    };
 
 
 public slots:

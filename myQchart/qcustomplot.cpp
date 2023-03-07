@@ -35525,5 +35525,6 @@ QVector<QPointF> QCPPolarGraph::dataToLines(const QVector<QCPGraphData> &data) c
   return result;
 }
 /* end of 'src/polar/polargraph.cpp' */
-
-
+  void QCPGraph::removeDataBefore(int size){
+  mDataContainer->removeBefore(mDataContainer->size()-size);
+  }

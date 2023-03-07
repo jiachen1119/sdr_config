@@ -5529,6 +5529,7 @@ public:
   bool adaptiveSampling() const { return mAdaptiveSampling; }
   
   // setters:
+  void removeDataBefore(int size);//增加的移除数据函数
   void setData(QSharedPointer<QCPGraphDataContainer> data);
   void setData(const QVector<double> &keys, const QVector<double> &values, bool alreadySorted=false);
   void setLineStyle(LineStyle ls);
@@ -5540,7 +5541,7 @@ public:
   // non-property methods:
   void addData(const QVector<double> &keys, const QVector<double> &values, bool alreadySorted=false);
   void addData(double key, double value);
-  
+
   // reimplemented virtual methods:
   virtual double selectTest(const QPointF &pos, bool onlySelectable, QVariant *details=nullptr) const Q_DECL_OVERRIDE;
   virtual QCPRange getKeyRange(bool &foundRange, QCP::SignDomain inSignDomain=QCP::sdBoth) const Q_DECL_OVERRIDE;

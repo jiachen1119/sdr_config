@@ -27,6 +27,9 @@ PlotBaseWidget::PlotBaseWidget(QWidget *parent) :
     QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
     timeTicker->setTimeFormat("%s");
     customPlot->xAxis->setVisible(true);
+
+    customPlot->xAxis->setRange(0,100);
+    //set ticker
     customPlot->xAxis->setTicker(timeTicker);
     customPlot->xAxis->setTickLabels(true);
     customPlot->xAxis->setBasePen(TickPen);
@@ -37,6 +40,7 @@ PlotBaseWidget::PlotBaseWidget(QWidget *parent) :
     customPlot->xAxis->setLabelPadding(1);       //设置坐标轴名称文本距离坐标轴刻度线距离
 
     //设置Y轴
+    customPlot->yAxis->setRange(0,50);
     QSharedPointer<QCPAxisTickerFixed> fixTicker(new QCPAxisTickerFixed);
     customPlot->yAxis->setTickLabels(true);     //设置y轴刻度值显示
     customPlot->yAxis->setTicker(fixTicker);
@@ -100,28 +104,16 @@ void PlotBaseWidget::AddData(double key,QMap<int,double> mapData)
     for(; it_inputData != mapData.end(); it_inputData++)
     {
         QMap<int,StLineInfoAll>::Iterator it_graph = mapLineInfo.find(it_inputData.key());
-        if(it_graph != mapLineInfo.end())
+        if(it_graph != mapLineInfo.end()){
+            if (key>100)
+                customPlot->xAxis->setRange(key-95,key+5);
+            it_graph.value().graph->removeDataBefore(100);
             it_graph.value().graph->addData(key,it_inputData.value());
+        }
     }
     customPlot->replot();
 }
 
-// 设置X轴范围
-void PlotBaseWidget::SetXrange(int id,double lower, double upper)
-{
-    if(id == 0)
-        customPlot->xAxis->setRange(lower, upper);         //设置X轴范围
-    else
-        customPlot->xAxis2->setRange(lower, upper);
-}
-// 设置Y轴范围
-void PlotBaseWidget::SetYrange(int id,double lower, double upper)
-{
-    if(id == 0)
-        customPlot->yAxis->setRange(lower, upper);
-    else
-        customPlot->yAxis2->setRange(lower, upper);
-}
 // init
 void PlotBaseWidget::InitParam()
 {
