@@ -13,39 +13,22 @@ SdrWindows::SdrWindows(QWidget *parent) :
     init();
     toolButtonConnect();
 
-    //set the Read button
-    connect(ui->pushButton,&QPushButton::clicked, this,[&](){
-        QStringList readBtn_list= readConfigInLine(config_path_.path());
-        switch (btnGroup_flag_) {
-            case 0:
-                //read the configuration readFile
-                fileConfig(readBtn_list,true);
-                break;
-            case 1:
-                hackrfConfig(readBtn_list, true);
-                break;
-            case 2:
-                break;
-            default:
-                break;
-        }
-
-    });
-
     //set the Start button
-    connect(ui->pushButton_2,&QPushButton::clicked, this,[&](){
+    connect(ui->pushButton_start,&QPushButton::clicked, this,[&](){
+        //get the user config
         data_type_=ui->comboBox->currentText();
         sampling_freq_=ui->lineEdit->text();
+        work_path_.setPath(ui->lineEdit_workPath->text());
+        config_path_.setPath(ui->lineEdit_configPath->text());
+        rawData_path_.setPath(ui->lineEdit_rawData->text());
         //todo: model config file need to be debug
         QStringList writeBtn_list=readConfigInLine(config_path_.path());
-        switch (btnGroup_flag_) {
+        switch (buttonGroup_id_) {
             case 0:
-                fileConfig(writeBtn_list, false);
+                fileConfig(writeBtn_list);
                 break;
             case 1:
-                hackrfConfig(writeBtn_list, false);
-                break;
-            case 2:
+                hackrfConfig(writeBtn_list);
                 break;
             default:
                 break;
@@ -55,10 +38,6 @@ SdrWindows::SdrWindows(QWidget *parent) :
     connect(button_group_.get(), &QButtonGroup::idToggled,
             this, &SdrWindows::buttonToggled);
 
-    //set the Default button
-    connect(ui->pushButton_3,&QPushButton::clicked, this,[&](){
-            ui->setupUi(this);
-    });
     //只要按下monitor就停止
     connect(term_window_.get(), &TerminalWindow::end_monitor, &monitor_Qthread_, &monitor_Qthread::change_endSign_status);
     //接收到数据，触发 绘图
@@ -116,7 +95,7 @@ void SdrWindows::init() {
 void SdrWindows::buttonToggled(int button, bool checked) {
     if (!checked)
         return;
-    btnGroup_flag_=button;
+    buttonGroup_id_=button;
     switch (button)
     {
         case 0:
@@ -141,129 +120,91 @@ void SdrWindows::buttonToggled(int button, bool checked) {
 QStringList SdrWindows::readConfigInLine(const QString& file_path) {
     QFile file(file_path);
     QStringList read_QString_list;
-    if(!file.open(QIODevice::ReadOnly|QIODevice::Text|QIODevice::ExistingOnly)){
+
+    if(!file.exists()||!file.open(QIODevice::ReadOnly|QIODevice::Text|QIODevice::ExistingOnly)){
         QMessageBox::critical(this,"File Read Error",
                               QString("cannot find: ")+file_path+QString(" , please retry!"));
         qDebug()<<QString("cannot find ")+file_path;
     }
     else{
-        char* read_data=new char[100];
-        qint64 readNum=file.readLine(read_data,100);
-        while ((readNum !=0) && (readNum != -1)){
-            QString read_data_QString(read_data);
-            read_QString_list<<read_data_QString;
-            readNum=file.readLine(read_data, 100);
+        QTextStream in(&file);
+        while (!in.atEnd()){
+            QString line=in.readLine();
+            read_QString_list<<line<<QString('\n');
         }
         file.close();
     }
     return read_QString_list;
 }
 
-void SdrWindows::fileConfig(QStringList data_list, bool read_or_write) {
-    //true is reading function, and false is writing function
-    if(read_or_write){
-        for (int i = 0; i < data_list.size(); ++i) {
-            myQString myStr(data_list.at(i));
-            QString keyWord=myStr.readKeyWordAll();
-            if(keyWord.contains("SignalSource.sampling_frequency", Qt::CaseSensitive)){
-                //because some read datalist is null, readData sometimes can be out of range
-                sampling_freq_=myStr.readData();
-                ui->lineEdit->setText(sampling_freq_);
-            }
-            if(keyWord.contains("SignalSource.item_type", Qt::CaseSensitive)){
-                data_type_=myStr.readData();
-                ui->comboBox->setCurrentText(data_type_);
-            }
-            if(keyWord.contains("SignalSource.filename", Qt::CaseSensitive)){
-                rawData_path_=myStr.readData();
-                ui->lineEdit_rawData->setText(rawData_path_.path());
-            }
+void SdrWindows::fileConfig(QStringList data_list) {
+    for (int list_index = 0; list_index < data_list.size(); ++list_index) {
+        myQString myStr(data_list.at(list_index));
+        QString keyWord=myStr.readKeyWordAll();
+        if (keyWord.contains("SignalSource.sampling_frequency",Qt::CaseInsensitive)){
+            QString str=QString("%1=%2\n").arg(keyWord).arg(sampling_freq_);
+            data_list.replace(list_index, str);
         }
-        ui->statusbar->showMessage("File part reading completed",2000);
+        if (keyWord.contains("SignalSource.item_type",Qt::CaseInsensitive)){
+            QString str=QString("%1=%2\n").arg(keyWord).arg(data_type_);
+            data_list.replace(list_index, str);
+        }
+        if (keyWord.contains("SignalSource.filename",Qt::CaseInsensitive)){
+            QString str=QString("%1=%2\n").arg(keyWord).arg(rawData_path_.path());
+            data_list.replace(list_index, str);
+        }
     }
+    QFile generate_file(work_path_.path() + "/generate_config.conf");
+    if(!generate_file.open(QIODevice::WriteOnly | QIODevice::Truncate))
+        ui->statusbar->showMessage("Generating failed!",2000);
     else{
-        rawData_path_=ui->lineEdit_rawData->text();
-        for (int list_index = 0; list_index < data_list.size(); ++list_index) {
-            myQString myStr(data_list.at(list_index));
-            QString keyWord=myStr.readKeyWordAll();
-            if (keyWord.contains("SignalSource.sampling_frequency",Qt::CaseInsensitive)){
-                QString str=QString("%1=%2\n").arg(keyWord).arg(sampling_freq_);
-                data_list.replace(list_index, str);
+            for (const auto & index : data_list) {
+                generate_file.write(index.toStdString().c_str());
             }
-            if (keyWord.contains("SignalSource.item_type",Qt::CaseInsensitive)){
-                QString str=QString("%1=%2\n").arg(keyWord).arg(data_type_);
-                data_list.replace(list_index, str);
-            }
-            if (keyWord.contains("SignalSource.filename",Qt::CaseInsensitive)){
-                QString str=QString("%1=%2\n").arg(keyWord).arg(rawData_path_.path());
-                data_list.replace(list_index, str);
-            }
-        }
-        QFile writeFile(work_path_.path() + "/sdr_config.conf");
-        if(!writeFile.open(QIODevice::WriteOnly|QIODevice::Text))
-            ui->statusbar->showMessage("sdr_config.conf not found, already created",2000);
-        else{
-            for (int index = 0; index < data_list.size(); ++index) {
-                writeFile.write(data_list.at(index).toStdString().c_str());
-            }
-            writeFile.close();
+            generate_file.close();
             ui->statusbar->showMessage("File config completed!",2000);
         }
-        //ask if the user want to run gnss-sdr
-        QMessageBox::StandardButton result = QMessageBox::question(this,"GNSS-SDR","Do you want to run GNSS-SDR with sdr_config.conf?",
+    //ask if the user want to run gnss-sdr
+    QMessageBox::StandardButton result = QMessageBox::question(this,"GNSS-SDR","Do you want to run GNSS-SDR with sdr_config.conf?",
                               QMessageBox::Yes|QMessageBox::No,QMessageBox::No);
-        if (result==QMessageBox::Yes){
-            if(!monitor_Qthread_.isRunning())
-                monitor_Qthread_.start();
-            term_window_->show();
-            term_window_->cmd_start(work_path_.path());
-            chart_window_->show();
-        }
+    if (result==QMessageBox::Yes){
+        if(!monitor_Qthread_.isRunning())
+            monitor_Qthread_.start();
+        term_window_->show();
+        term_window_->cmd_start(work_path_.path());
+        chart_window_->show();
     }
 }
 
-void SdrWindows::hackrfConfig(QStringList data_list, bool read_or_write) {
-    if(read_or_write){
-        hackRf_.ConfigGetHackrf(data_list);
-        ui->lineEdit->setText(QString::number(hackRf_.getSamplingFrequency(),10));
-        ui->lineEdit_gain->setText(QString::number(hackRf_.getGain()));
-        ui->lineEdit_rf->setText(QString::number(hackRf_.getRfGain()));
-        ui->lineEdit_if->setText(QString::number(hackRf_.getIfGain()));
-        if (hackRf_.isAgcEnabled())
-            ui->checkBox_agc->setCheckState(Qt::Checked);
-        else
-            ui->checkBox_agc->setCheckState(Qt::Unchecked);
-        ui->statusbar->showMessage("Hackrf part reading completed",2000);
+void SdrWindows::hackrfConfig(QStringList data_list) {
+    hackRf_.setSamplingFrequency(ui->lineEdit->text().toInt());
+    hackRf_.setGain(ui->lineEdit_gain->text().toInt());
+    hackRf_.setIfGain(ui->lineEdit_if->text().toInt());
+    hackRf_.setRfGain(ui->lineEdit_rf->text().toInt());
+    if (ui->checkBox_agc->isChecked())
+        hackRf_.setAgcEnabled(true);
+    else
+        hackRf_.setAgcEnabled(false);
+    hackRf_.HackrfGetConfig(data_list);
+    QFile generate_file(work_path_.path() + "/generate_config.conf");
+    if (!generate_file.open(QIODevice::WriteOnly | QIODevice::Text))
+        ui->statusbar->showMessage("Generating failed!",2000);
+    else
+    {
+        for (const auto & index : data_list) {
+            generate_file.write(index.toStdString().c_str());
+        }
+        generate_file.close();
+        ui->statusbar->showMessage("hackrf config completed!",2000);
     }
-    else {
-        hackRf_.setSamplingFrequency(ui->lineEdit->text().toInt());
-        hackRf_.setGain(ui->lineEdit_gain->text().toInt());
-        hackRf_.setIfGain(ui->lineEdit_if->text().toInt());
-        hackRf_.setRfGain(ui->lineEdit_rf->text().toInt());
-        if (ui->checkBox_agc->isChecked())
-            hackRf_.setAgcEnabled(true);
-        else
-            hackRf_.setAgcEnabled(false);
-        hackRf_.HackrfGetConfig(data_list);
-        QFile writeFile(work_path_.path() + "/sdr_config.conf");
-        if (!writeFile.open(QIODevice::WriteOnly | QIODevice::Text))
-            ui->statusbar->showMessage("sdr_config.conf not found, already created",2000);
-        else {
-            for (int index = 0; index < data_list.size(); ++index) {
-                writeFile.write(data_list.at(index).toStdString().c_str());
-            }
-            writeFile.close();
-            ui->statusbar->showMessage("hackrf config completed!",2000);
-        }
-        QMessageBox::StandardButton result = QMessageBox::question(this,"GNSS-SDR","Do you want to run GNSS-SDR with sdr_config.conf?",
-                                                                   QMessageBox::Yes|QMessageBox::No,QMessageBox::No);
-        if (result==QMessageBox::Yes) {
-            if (!monitor_Qthread_.isRunning())
-                monitor_Qthread_.start();
-            term_window_->show();
-            term_window_->cmd_start(work_path_.path());
-            chart_window_->show();
-        }
+    QMessageBox::StandardButton result = QMessageBox::question(this,"GNSS-SDR","Do you want to run GNSS-SDR with sdr_config.conf?",
+                                                               QMessageBox::Yes|QMessageBox::No,QMessageBox::No);
+    if (result==QMessageBox::Yes) {
+        if (!monitor_Qthread_.isRunning())
+            monitor_Qthread_.start();
+        term_window_->show();
+        term_window_->cmd_start(work_path_.path());
+        chart_window_->show();
     }
 }
 

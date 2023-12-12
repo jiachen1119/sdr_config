@@ -35,9 +35,9 @@ void TerminalWindow::cmd_start(QString workPlace_path) {
         std::cout<<"clicked monitor button"<<std::endl;
     });
     QString program=QString("gnss-sdr");
-    QStringList arguments=QStringList(" --config_file=sdr_config.conf");
+    QStringList arguments=QStringList(" --config_file=generate_config.conf");
     cmd->start("bash");
-    cmd->write("gnss-sdr --config_file=sdr_config.conf\n");
+    cmd->write("gnss-sdr --config_file=generate_config.conf\n");
     if(cmd->waitForReadyRead()) qDebug()<<"cmd success";
     else
     {

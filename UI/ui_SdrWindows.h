@@ -63,11 +63,6 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_3;
-    QWidget *widget_4;
-    QHBoxLayout *horizontalLayout_6;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
     QGroupBox *groupBox_2;
     QWidget *widget_5;
     QHBoxLayout *horizontalLayout_7;
@@ -105,6 +100,7 @@ public:
     QHBoxLayout *horizontalLayout_13;
     QLabel *label_9;
     QCheckBox *checkBox_bias;
+    QPushButton *pushButton_start;
     QMenuBar *menubar;
     QMenu *menu;
     QMenu *menu_2;
@@ -236,26 +232,6 @@ public:
         horizontalLayout_3 = new QHBoxLayout(layoutWidget1);
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        widget_4 = new QWidget(centralwidget);
-        widget_4->setObjectName(QString::fromUtf8("widget_4"));
-        widget_4->setGeometry(QRect(400, 490, 371, 61));
-        horizontalLayout_6 = new QHBoxLayout(widget_4);
-        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
-        pushButton = new QPushButton(widget_4);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-
-        horizontalLayout_6->addWidget(pushButton);
-
-        pushButton_2 = new QPushButton(widget_4);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-
-        horizontalLayout_6->addWidget(pushButton_2);
-
-        pushButton_3 = new QPushButton(widget_4);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-
-        horizontalLayout_6->addWidget(pushButton_3);
-
         groupBox_2 = new QGroupBox(centralwidget);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
         groupBox_2->setGeometry(QRect(30, 20, 311, 80));
@@ -422,6 +398,12 @@ public:
         verticalLayout_2->addWidget(widget_11);
 
         stackedWidget->addWidget(page_2);
+        pushButton_start = new QPushButton(centralwidget);
+        pushButton_start->setObjectName(QString::fromUtf8("pushButton_start"));
+        pushButton_start->setGeometry(QRect(630, 480, 131, 51));
+        QFont font;
+        font.setPointSize(21);
+        pushButton_start->setFont(font);
         SdrWindows->setCentralWidget(centralwidget);
         menubar = new QMenuBar(SdrWindows);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -478,9 +460,6 @@ public:
         label_10->setText(QCoreApplication::translate("SdrWindows", "Working Place", nullptr));
         lineEdit_workPath->setText(QString());
         toolButton_workPath->setText(QCoreApplication::translate("SdrWindows", "...", nullptr));
-        pushButton->setText(QCoreApplication::translate("SdrWindows", "Read", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("SdrWindows", "Start", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("SdrWindows", "Default", nullptr));
         groupBox_2->setTitle(QCoreApplication::translate("SdrWindows", "Signal Source Implementation", nullptr));
         radioButtonFile->setText(QCoreApplication::translate("SdrWindows", "File", nullptr));
         radioButtonHackrf->setText(QCoreApplication::translate("SdrWindows", "HackRF", nullptr));
@@ -498,6 +477,7 @@ public:
         checkBox_agc->setText(QCoreApplication::translate("SdrWindows", "Enable", nullptr));
         label_9->setText(QCoreApplication::translate("SdrWindows", "Bias Voltage", nullptr));
         checkBox_bias->setText(QCoreApplication::translate("SdrWindows", "Enable", nullptr));
+        pushButton_start->setText(QCoreApplication::translate("SdrWindows", "Start", nullptr));
         menu->setTitle(QCoreApplication::translate("SdrWindows", "File", nullptr));
         menu_2->setTitle(QCoreApplication::translate("SdrWindows", "Help", nullptr));
     } // retranslateUi

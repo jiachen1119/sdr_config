@@ -39,8 +39,8 @@ public:
     void init();
 
     QStringList readConfigInLine(const QString& file_path);
-    void fileConfig(QStringList data_list,bool read_or_write);
-    void hackrfConfig(QStringList data_list,bool read_or_write);
+    void fileConfig(QStringList data_list);
+    void hackrfConfig(QStringList data_list);
     ~SdrWindows() override;
     enum class frontEnd{
         file=0,
@@ -64,7 +64,7 @@ private:
     QString data_type_;
     QString sampling_freq_;
     std::unique_ptr<QButtonGroup> button_group_;
-    int btnGroup_flag_=0;
+    int buttonGroup_id_=0;
     HackRF hackRf_;
     monitor_Qthread monitor_Qthread_;
 
