@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QPushButton>
-#include "UI/sdr_windows.h"
+#include "UI/SdrWindows.h"
 #include <QFile>
 #include <iostream>
 #include "monitor_Qthread.h"
@@ -11,8 +11,8 @@ int main(int argc, char *argv[]) {
     QFile file("../index.css");
 
     QApplication a(argc, argv);
-    QWidget *b=new QWidget;
-    sdr_windows uiw(b);
+    auto *b=new QWidget;
+    SdrWindows uiw(b);
     if (file.open(QFile::ReadOnly))
     {
         QString qss = QLatin1String(file.readAll());
